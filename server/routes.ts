@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { setupAuth, isAuthenticated } from "./replitAuth";
+import { setupAuth, isAuthenticated } from "./auth";
 import {
   insertOrganizationSchema,
   insertOpportunitySchema,
@@ -11,24 +11,17 @@ import { z } from "zod";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Auth middleware
-  await setupAuth(app);
+  setupAuth(app);
 
-  // Auth routes
-  app.get('/api/auth/user', isAuthenticated, async (req: any, res) => {
-    try {
-      const userId = req.user.claims.sub;
-      const user = await storage.getUser(userId);
-      res.json(user);
-    } catch (error) {
-      console.error("Error fetching user:", error);
-      res.status(500).json({ message: "Failed to fetch user" });
-    }
+  // User route
+  app.get('/api/user', isAuthenticated, (req, res) => {
+    res.json(req.user);
   });
 
   // Organization routes
   app.post('/api/organizations', isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user.id;
       const data = insertOrganizationSchema.parse({
         ...req.body,
         ownerId: userId,
@@ -44,7 +37,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.get('/api/organizations/my', isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user.id;
       const organizations = await storage.getUserOrganizations(userId);
       res.json(organizations);
     } catch (error) {
@@ -72,7 +65,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.patch('/api/organizations/:id', isAuthenticated, async (req: any, res) => {
     try {
       const id = parseInt(req.params.id);
-      const userId = req.user.claims.sub;
+      const userId = req.user.id;
       
       // Check if user has permission to update this organization
       const organization = await storage.getOrganization(id);
@@ -103,7 +96,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Opportunity routes
   app.post('/api/opportunities', isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user.id;
       const data = insertOpportunitySchema.parse({
         ...req.body,
         createdById: userId,
@@ -162,7 +155,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.patch('/api/opportunities/:id', isAuthenticated, async (req: any, res) => {
     try {
       const id = parseInt(req.params.id);
-      const userId = req.user.claims.sub;
+      const userId = req.user.id;
       
       // Check if user has permission to update this opportunity
       const opportunity = await storage.getOpportunity(id);
@@ -182,7 +175,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.delete('/api/opportunities/:id', isAuthenticated, async (req: any, res) => {
     try {
       const id = parseInt(req.params.id);
-      const userId = req.user.claims.sub;
+      const userId = req.user.id;
       
       // Check if user has permission to delete this opportunity
       const opportunity = await storage.getOpportunity(id);
@@ -202,7 +195,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post('/api/opportunities/:id/signup', isAuthenticated, async (req: any, res) => {
     try {
       const opportunityId = parseInt(req.params.id);
-      const userId = req.user.claims.sub;
+      const userId = req.user.id;
       
       const data = insertVolunteerSignupSchema.parse({
         opportunityId,
@@ -231,7 +224,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.get('/api/user/signups', isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user.id;
       const signups = await storage.getUserSignups(userId);
       res.json(signups);
     } catch (error) {
@@ -267,7 +260,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // User stats route
   app.get('/api/user/stats', isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user.id;
       const stats = await storage.getVolunteerStats(userId);
       res.json(stats);
     } catch (error) {

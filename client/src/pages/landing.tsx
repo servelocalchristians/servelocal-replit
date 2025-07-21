@@ -69,7 +69,7 @@ export default function Landing() {
                   className="bg-secondary hover:bg-green-600 text-white elevation-2"
                   asChild
                 >
-                  <a href="/api/login">
+                  <a href="/auth">
                     <Heart className="mr-2 h-5 w-5" />
                     Find Opportunities
                   </a>
@@ -80,7 +80,7 @@ export default function Landing() {
                   className="border-2 border-white text-white hover:bg-white hover:text-primary"
                   asChild
                 >
-                  <a href="/api/login">
+                  <a href="/auth">
                     <Church className="mr-2 h-5 w-5" />
                     Register Your Nonprofit
                   </a>
@@ -187,7 +187,7 @@ export default function Landing() {
                   Help sort and distribute food to local families in need. No experience required, just a heart to serve.
                 </p>
                 <Button size="sm" asChild>
-                  <a href="/api/login">Sign Up</a>
+                  <a href="/auth">Sign Up</a>
                 </Button>
               </CardContent>
             </Card>
@@ -221,7 +221,7 @@ export default function Landing() {
                   Be a positive influence in a teenager's life through weekly mentorship sessions.
                 </p>
                 <Button size="sm" asChild>
-                  <a href="/api/login">Sign Up</a>
+                  <a href="/auth">Sign Up</a>
                 </Button>
               </CardContent>
             </Card>
@@ -301,7 +301,7 @@ export default function Landing() {
               className="bg-white text-primary hover:bg-gray-100 elevation-2"
               asChild
             >
-              <a href="/api/login">
+              <a href="/auth">
                 <UserPlus className="mr-2 h-5 w-5" />
                 Sign Up as Volunteer
               </a>
@@ -312,7 +312,7 @@ export default function Landing() {
               className="border-2 border-white text-white hover:bg-white hover:text-primary"
               asChild
             >
-              <a href="/api/login">
+              <a href="/auth">
                 <Church className="mr-2 h-5 w-5" />
                 Register Your Nonprofit
               </a>

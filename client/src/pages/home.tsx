@@ -1,4 +1,4 @@
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from "@/hooks/use-auth";
 import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -22,7 +22,11 @@ export default function Home() {
   });
 
   // Fetch user stats
-  const { data: stats, isLoading: statsLoading } = useQuery({
+  const { data: stats, isLoading: statsLoading } = useQuery<{
+    hoursVolunteered: number;
+    opportunitiesCompleted: number;
+    churchesServed: number;
+  }>({
     queryKey: ["/api/user/stats"],
   });
 
