@@ -20,12 +20,12 @@ export default function Navbar() {
   const isActive = (path: string) => location === path;
 
   const NavLinks = ({ mobile = false }: { mobile?: boolean }) => (
-    <div className={mobile ? "flex flex-col space-y-4" : "flex items-baseline space-x-4"}>
+    <div className={mobile ? "flex flex-col space-y-4" : "flex items-baseline space-x-2 sm:space-x-4 lg:space-x-6"}>
       <Link href="/opportunities">
         <button
           className={`${
             isActive("/opportunities") ? "text-primary" : "text-gray-700"
-          } hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors`}
+          } hover:text-primary px-2 sm:px-3 py-2 rounded-md text-xs sm:text-sm font-medium transition-colors whitespace-nowrap`}
           onClick={() => mobile && setMobileMenuOpen(false)}
         >
           Find Opportunities
@@ -35,7 +35,7 @@ export default function Navbar() {
         <button
           className={`${
             isActive("/church-dashboard") ? "text-primary" : "text-gray-700"
-          } hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors`}
+          } hover:text-primary px-2 sm:px-3 py-2 rounded-md text-xs sm:text-sm font-medium transition-colors whitespace-nowrap`}
           onClick={() => mobile && setMobileMenuOpen(false)}
         >
           For Nonprofits
@@ -45,7 +45,7 @@ export default function Navbar() {
         <button
           className={`${
             isActive("/about") ? "text-primary" : "text-gray-700"
-          } hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors`}
+          } hover:text-primary px-2 sm:px-3 py-2 rounded-md text-xs sm:text-sm font-medium transition-colors whitespace-nowrap`}
           onClick={() => mobile && setMobileMenuOpen(false)}
         >
           About
@@ -65,13 +65,13 @@ export default function Navbar() {
               </span>
             </Link>
             {isAuthenticated && (
-              <div className="hidden md:block ml-10">
+              <div className="hidden sm:block ml-4 md:ml-6 lg:ml-10">
                 <NavLinks />
               </div>
             )}
           </div>
 
-          <div className="hidden md:block">
+          <div className="hidden sm:block">
             {isAuthenticated && user ? (
               <div className="ml-4 flex items-center space-x-3">
                 <DropdownMenu>
@@ -103,18 +103,18 @@ export default function Navbar() {
                 </DropdownMenu>
               </div>
             ) : (
-              <div className="ml-4 flex items-center space-x-3">
-                <Button variant="outline" asChild>
+              <div className="ml-2 sm:ml-4 flex items-center space-x-2 sm:space-x-3">
+                <Button variant="outline" size="sm" className="text-xs sm:text-sm" asChild>
                   <a href="/auth">Sign In</a>
                 </Button>
-                <Button asChild>
+                <Button size="sm" className="text-xs sm:text-sm" asChild>
                   <a href="/auth">Get Started</a>
                 </Button>
               </div>
             )}
           </div>
 
-          <div className="md:hidden">
+          <div className="sm:hidden">
             <Button
               variant="ghost"
               size="sm"
@@ -127,7 +127,7 @@ export default function Navbar() {
 
         {/* Mobile menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden">
+          <div className="sm:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t">
               {isAuthenticated ? (
                 <>
