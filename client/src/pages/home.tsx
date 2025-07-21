@@ -22,7 +22,11 @@ export default function Home() {
   });
 
   // Fetch user stats
-  const { data: stats, isLoading: statsLoading } = useQuery({
+  const { data: stats, isLoading: statsLoading } = useQuery<{
+    hoursVolunteered: number;
+    opportunitiesCompleted: number;
+    churchesServed: number;
+  }>({
     queryKey: ["/api/user/stats"],
   });
 
