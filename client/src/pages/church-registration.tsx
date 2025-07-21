@@ -14,7 +14,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from "@/hooks/use-auth";
 import { apiRequest } from "@/lib/queryClient";
 import { isUnauthorizedError } from "@/lib/authUtils";
 import Navbar from "@/components/layout/navbar";
@@ -31,7 +31,8 @@ const formSchema = insertOrganizationSchema.omit({
 type FormData = z.infer<typeof formSchema>;
 
 export default function ChurchRegistration() {
-  const { user, isLoading: authLoading, isAuthenticated } = useAuth();
+  const { user, isLoading: authLoading } = useAuth();
+  const isAuthenticated = !!user;
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const [, navigate] = useLocation();

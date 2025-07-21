@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from "@/hooks/use-auth";
 import Navbar from "@/components/layout/navbar";
 import { Plus, Users, Calendar, BarChart3, Settings, Edit, Eye } from "lucide-react";
 import { type OrganizationWithDetails, type OpportunityWithDetails } from "@shared/schema";
