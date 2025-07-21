@@ -80,13 +80,13 @@ export default function AuthPage() {
   };
 
   return (
-    <div className="min-h-screen flex">
+    <div className="min-h-screen flex flex-col lg:flex-row">
       {/* Left Side - Forms */}
-      <div className="flex-1 flex items-center justify-center p-8 bg-white">
+      <div className="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-8 bg-white">
         <div className="w-full max-w-md">
-          <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome to ServeConnect</h1>
-            <p className="text-gray-600">Connect with volunteer opportunities in your community</p>
+          <div className="text-center mb-6 lg:mb-8">
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Welcome to ServeConnect</h1>
+            <p className="text-sm sm:text-base text-gray-600">Connect with volunteer opportunities in your community</p>
           </div>
 
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
@@ -253,12 +253,12 @@ export default function AuthPage() {
       </div>
 
       {/* Right Side - Hero */}
-      <div className="flex-1 bg-gradient-to-br from-primary to-blue-800 p-8 text-white flex items-center justify-center">
+      <div className="hidden lg:flex flex-1 bg-gradient-to-br from-primary to-blue-800 p-6 lg:p-8 text-white items-center justify-center">
         <div className="max-w-lg text-center">
-          <h2 className="text-4xl font-bold mb-6">
+          <h2 className="text-3xl lg:text-4xl font-bold mb-4 lg:mb-6">
             Strengthen Communities Together
           </h2>
-          <p className="text-xl mb-8 text-blue-100">
+          <p className="text-lg lg:text-xl mb-6 lg:mb-8 text-blue-100">
             Connect churches and nonprofits with volunteers to create lasting positive change in your community.
           </p>
           

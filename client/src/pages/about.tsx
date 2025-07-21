@@ -7,25 +7,25 @@ export default function About() {
     <div className="min-h-screen bg-gray-50">
       <Navbar />
       {/* Header */}
-      <section className="bg-gradient-to-br from-primary to-blue-800 text-white py-16">
+      <section className="bg-gradient-to-br from-primary to-blue-800 text-white py-8 sm:py-12 lg:py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl lg:text-5xl font-bold mb-6">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">
             About ServeConnect
           </h1>
-          <p className="text-xl text-blue-100 max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-blue-100 max-w-2xl mx-auto">
             Inspired by ancient wisdom, building modern communities through collaborative service
           </p>
         </div>
       </section>
 
       {/* Nehemiah Story Section */}
-      <section className="py-16 lg:py-20 bg-white">
+      <section className="py-8 sm:py-12 lg:py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
               The Nehemiah Principle
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-lg sm:text-xl text-gray-600">
               Our inspiration comes from one of history's greatest community rebuilding efforts
             </p>
           </div>
