@@ -60,7 +60,7 @@ export default function ChurchRegistration() {
         title: "Authentication Required",
         description: "Please sign in to register your church.",
       });
-      window.location.href = "/api/login";
+      window.location.href = "/auth";
     }
   }, [authLoading, isAuthenticated, toast]);
 
@@ -84,7 +84,7 @@ export default function ChurchRegistration() {
           variant: "destructive",
         });
         setTimeout(() => {
-          window.location.href = "/api/login";
+          window.location.href = "/auth";
         }, 500);
         return;
       }
