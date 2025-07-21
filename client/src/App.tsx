@@ -11,6 +11,7 @@ import Opportunities from "@/pages/opportunities";
 import ChurchDashboard from "@/pages/church-dashboard";
 import CreateOpportunity from "@/pages/create-opportunity";
 import ChurchRegistration from "@/pages/church-registration";
+import About from "@/pages/about";
 
 function Router() {
   const { isAuthenticated, isLoading } = useAuth();
@@ -18,7 +19,10 @@ function Router() {
   return (
     <Switch>
       {isLoading || !isAuthenticated ? (
-        <Route path="/" component={Landing} />
+        <>
+          <Route path="/" component={Landing} />
+          <Route path="/about" component={About} />
+        </>
       ) : (
         <>
           <Route path="/" component={Home} />
@@ -26,6 +30,7 @@ function Router() {
           <Route path="/church-dashboard" component={ChurchDashboard} />
           <Route path="/create-opportunity" component={CreateOpportunity} />
           <Route path="/register-church" component={ChurchRegistration} />
+          <Route path="/about" component={About} />
         </>
       )}
       <Route component={NotFound} />
