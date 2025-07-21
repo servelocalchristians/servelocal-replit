@@ -22,28 +22,36 @@ export default function Landing() {
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
-              <span className="text-2xl font-bold text-primary">ServeConnect</span>
-              <div className="hidden md:block ml-10">
+              <span className="text-xl sm:text-2xl font-bold text-primary">ServeConnect</span>
+              <div className="hidden md:block ml-6 lg:ml-10">
                 <div className="flex items-baseline space-x-4">
-                  <button className="text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">
+                  <button className="text-gray-700 hover:text-primary px-2 lg:px-3 py-2 rounded-md text-sm font-medium">
                     Find Opportunities
                   </button>
-                  <button className="text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">
+                  <button className="text-gray-700 hover:text-primary px-2 lg:px-3 py-2 rounded-md text-sm font-medium">
                     For Nonprofits
                   </button>
-                  <a href="/about" className="text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">
+                  <a href="/about" className="text-gray-700 hover:text-primary px-2 lg:px-3 py-2 rounded-md text-sm font-medium">
                     About
                   </a>
                 </div>
               </div>
             </div>
             
+            {/* Mobile menu button */}
+            <div className="md:hidden">
+              <Button size="sm" asChild>
+                <a href="/auth">Start</a>
+              </Button>
+            </div>
+            
+            {/* Desktop buttons */}
             <div className="hidden md:block">
-              <div className="ml-4 flex items-center space-x-3">
-                <Button variant="outline" asChild>
+              <div className="ml-4 flex items-center space-x-2 lg:space-x-3">
+                <Button variant="outline" size="sm" asChild>
                   <a href="/auth?tab=login">Sign In</a>
                 </Button>
-                <Button asChild>
+                <Button size="sm" asChild>
                   <a href="/auth">Get Started</a>
                 </Button>
               </div>
@@ -54,44 +62,44 @@ export default function Landing() {
 
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary to-blue-800 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-4xl lg:text-6xl font-bold leading-tight mb-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-24">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            <div className="text-center lg:text-left">
+              <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold leading-tight mb-4 sm:mb-6">
                 Connect. Serve. <span className="text-yellow-300">Strengthen Communities.</span>
               </h1>
-              <p className="text-xl lg:text-2xl mb-8 text-blue-100">
+              <p className="text-lg sm:text-xl lg:text-2xl mb-6 sm:mb-8 text-blue-100">
                 Bridge the gap between churches and volunteers. Discover opportunities to serve beyond your home congregation and strengthen the body of Christ.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
                 <Button 
                   size="lg" 
-                  className="bg-secondary hover:bg-green-600 text-white elevation-2"
+                  className="bg-secondary hover:bg-green-600 text-white elevation-2 w-full sm:w-auto"
                   asChild
                 >
                   <a href="/auth">
-                    <Heart className="mr-2 h-5 w-5" />
+                    <Heart className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                     Find Opportunities
                   </a>
                 </Button>
                 <Button 
                   size="lg" 
                   variant="outline"
-                  className="border-2 border-white text-white hover:bg-white hover:text-primary"
+                  className="border-2 border-white text-white hover:bg-white hover:text-primary w-full sm:w-auto"
                   asChild
                 >
                   <a href="/auth">
-                    <Church className="mr-2 h-5 w-5" />
+                    <Church className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                     Register Your Nonprofit
                   </a>
                 </Button>
               </div>
             </div>
-            <div className="relative">
+            <div className="relative order-first lg:order-last">
               <img 
                 src="https://images.unsplash.com/photo-1593113598332-cd288d649433?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" 
                 alt="Diverse group of volunteers serving together" 
-                className="rounded-xl elevation-3 w-full h-auto object-cover"
+                className="rounded-xl elevation-3 w-full h-48 sm:h-64 lg:h-auto object-cover"
               />
             </div>
           </div>

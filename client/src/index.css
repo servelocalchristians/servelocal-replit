@@ -58,6 +58,29 @@
   }
 }
 
+/* Mobile-specific improvements */
+@media (max-width: 640px) {
+  /* Ensure proper touch targets */
+  button, .btn, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Improve form element spacing */
+  input, select, textarea, .form-control {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+  
+  /* Better card spacing on mobile */
+  .card {
+    margin-bottom: 1rem;
+  }
+  
+  /* Improved text sizing for readability */
+  .text-xs { font-size: 0.875rem; }
+  .text-sm { font-size: 1rem; }
+}
+
 .elevation-1 {
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
