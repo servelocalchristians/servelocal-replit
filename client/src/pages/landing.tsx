@@ -107,44 +107,44 @@ export default function Landing() {
       </section>
 
       {/* Features Section */}
-      <section className="py-16 lg:py-24 bg-white">
+      <section className="py-12 sm:py-16 lg:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+          <div className="text-center mb-10 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
               How ServeConnect Works
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
               Simple, secure, and designed for faith communities of all sizes
             </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center p-6">
-              <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <UserPlus className="h-8 w-8 text-primary" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            <div className="text-center p-4 sm:p-6">
+              <div className="bg-primary/10 w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                <UserPlus className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold mb-4">Easy Registration</h3>
-              <p className="text-gray-600">
+              <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">Easy Registration</h3>
+              <p className="text-sm sm:text-base text-gray-600">
                 Quick signup for volunteers and secure church verification process ensures trust and safety.
               </p>
             </div>
             
-            <div className="text-center p-6">
-              <div className="bg-secondary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <MapPin className="h-8 w-8 text-secondary" />
+            <div className="text-center p-4 sm:p-6">
+              <div className="bg-secondary/10 w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                <MapPin className="h-6 w-6 sm:h-8 sm:w-8 text-secondary" />
               </div>
-              <h3 className="text-xl font-semibold mb-4">Location-Based Matching</h3>
-              <p className="text-gray-600">
+              <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">Location-Based Matching</h3>
+              <p className="text-sm sm:text-base text-gray-600">
                 Find opportunities near you and get notifications for new volunteer needs in your area.
               </p>
             </div>
             
-            <div className="text-center p-6">
-              <div className="bg-accent/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Users className="h-8 w-8 text-accent" />
+            <div className="text-center p-4 sm:p-6 sm:col-span-2 lg:col-span-1">
+              <div className="bg-accent/10 w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                <Users className="h-6 w-6 sm:h-8 sm:w-8 text-accent" />
               </div>
-              <h3 className="text-xl font-semibold mb-4">Role-Based Management</h3>
-              <p className="text-gray-600">
+              <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">Role-Based Management</h3>
+              <p className="text-sm sm:text-base text-gray-600">
                 Church leaders can assign roles and permissions to team members for efficient opportunity management.
               </p>
             </div>
