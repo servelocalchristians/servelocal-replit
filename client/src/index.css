@@ -58,7 +58,8 @@
   }
 }
 
-/* Mobile-specific improvements */
+/* Responsive improvements */
+/* Mobile devices (up to 640px) */
 @media (max-width: 640px) {
   /* Ensure proper touch targets */
   button, .btn, [role="button"] {
@@ -79,6 +80,52 @@
   /* Improved text sizing for readability */
   .text-xs { font-size: 0.875rem; }
   .text-sm { font-size: 1rem; }
+  
+  /* Mobile-specific utilities */
+  .mobile-center { text-align: center; }
+  .mobile-full-width { width: 100%; }
+  .mobile-stack > * { width: 100%; margin-bottom: 0.75rem; }
+}
+
+/* Tablet devices (641px to 1024px) */
+@media (min-width: 641px) and (max-width: 1024px) {
+  /* Tablet-specific adjustments */
+  .tablet-cols-2 { 
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 1rem; 
+  }
+  
+  /* Better spacing for tablets */
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Large screens (1025px and up) */
+@media (min-width: 1025px) {
+  /* Desktop-specific utilities */
+  .desktop-cols-3 { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 2rem; 
+  }
+  
+  .desktop-sidebar {
+    position: sticky;
+    top: 6rem;
+    max-height: calc(100vh - 8rem);
+    overflow-y: auto;
+  }
+}
+
+/* Ultra-wide screens (1441px and up) */
+@media (min-width: 1441px) {
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
 }
 
 .elevation-1 {

@@ -55,9 +55,9 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 lg:gap-8">
           {/* Main Content */}
-          <div className="lg:col-span-2">
+          <div className="xl:col-span-2">
             {/* Quick Actions */}
             <Card className="mb-6 sm:mb-8">
               <CardHeader>
@@ -109,7 +109,7 @@ export default function Home() {
                   ))}
                 </div>
               ) : opportunities && opportunities.length > 0 ? (
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                   {opportunities.map((opportunity) => (
                     <OpportunityCard
                       key={opportunity.id}
@@ -139,7 +139,7 @@ export default function Home() {
           </div>
 
           {/* Sidebar */}
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6 xl:space-y-6">
             {/* Your Stats */}
             <Card>
               <CardHeader>
