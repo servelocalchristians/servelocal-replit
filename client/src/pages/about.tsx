@@ -1,9 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Heart, Users, Building, ArrowRight } from "lucide-react";
+import Navbar from "@/components/layout/navbar";
 
 export default function About() {
   return (
     <div className="min-h-screen bg-gray-50">
+      <Navbar />
       {/* Header */}
       <section className="bg-gradient-to-br from-primary to-blue-800 text-white py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
