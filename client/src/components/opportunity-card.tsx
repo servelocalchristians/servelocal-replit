@@ -86,45 +86,45 @@ export default function OpportunityCard({
   });
 
   return (
-    <Card className="elevation-1 hover:elevation-2 transition-all duration-200">
-      <CardContent className="p-6">
-        <div className="flex justify-between items-start mb-3">
-          <div className="flex-1">
-            <h3 className="text-xl font-semibold text-gray-900 mb-1">
+    <Card className="elevation-1 hover:elevation-2 transition-all duration-200 h-full">
+      <CardContent className="p-4 sm:p-6 h-full flex flex-col">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-3 gap-2">
+          <div className="flex-1 min-w-0">
+            <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-1 line-clamp-2">
               {opportunity.title}
             </h3>
-            <p className="text-gray-600">{opportunity.organization.name}</p>
+            <p className="text-sm sm:text-base text-gray-600 truncate">{opportunity.organization.name}</p>
           </div>
-          <Badge variant="secondary" className={`${getStatusColor()} text-white`}>
+          <Badge variant="secondary" className={`${getStatusColor()} text-white text-xs sm:text-sm flex-shrink-0`}>
             {opportunity.currentVolunteers}/{opportunity.volunteersNeeded} volunteers
           </Badge>
         </div>
 
-        <div className="flex items-center text-sm text-gray-600 mb-3 space-x-4">
+        <div className="flex flex-col sm:flex-row sm:items-center text-xs sm:text-sm text-gray-600 mb-3 gap-1 sm:gap-4">
           <div className="flex items-center">
-            <Calendar className="h-4 w-4 mr-1" />
+            <Calendar className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
             <span>{formatDate(opportunity.date)}</span>
           </div>
           <div className="flex items-center">
-            <Clock className="h-4 w-4 mr-1" />
-            <span>
+            <Clock className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
+            <span className="text-xs sm:text-sm">
               {formatTime(opportunity.startTime)} - {formatTime(opportunity.endTime)}
             </span>
           </div>
         </div>
 
         {opportunity.location && (
-          <div className="flex items-center text-sm text-gray-600 mb-3">
-            <MapPin className="h-4 w-4 mr-1" />
-            <span>{opportunity.location}</span>
+          <div className="flex items-center text-xs sm:text-sm text-gray-600 mb-3">
+            <MapPin className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
+            <span className="truncate">{opportunity.location}</span>
           </div>
         )}
 
-        <Badge variant="outline" className="mb-3">
+        <Badge variant="outline" className="mb-3 self-start text-xs">
           {opportunity.category}
         </Badge>
 
-        <p className="text-gray-700 text-sm mb-4 line-clamp-3">
+        <p className="text-gray-700 text-xs sm:text-sm mb-4 line-clamp-3 flex-grow">
           {opportunity.description}
         </p>
 
@@ -141,9 +141,9 @@ export default function OpportunityCard({
           </div>
         )}
 
-        <div className="flex items-center justify-between">
-          <div className="flex items-center text-sm text-gray-600">
-            <Users className="h-4 w-4 mr-1" />
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0 mt-auto">
+          <div className="flex items-center text-xs sm:text-sm text-gray-600">
+            <Users className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
             <span>
               {opportunity.currentVolunteers} of {opportunity.volunteersNeeded} signed up
             </span>
