@@ -67,21 +67,21 @@ export default function Opportunities() {
     <div className="min-h-screen bg-gray-50">
       <Navbar />
       
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+        <div className="mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
             Find Volunteer Opportunities
           </h1>
-          <p className="text-gray-600">
+          <p className="text-sm sm:text-base text-gray-600">
             Discover meaningful ways to serve your community and strengthen your faith.
           </p>
         </div>
 
         {/* Filters */}
-        <Card className="mb-8">
-          <CardContent className="p-6">
-            <div className="grid md:grid-cols-3 gap-4">
+        <Card className="mb-6 sm:mb-8">
+          <CardContent className="p-4 sm:p-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                 <Input
@@ -109,7 +109,7 @@ export default function Opportunities() {
               <Button variant="outline" onClick={() => {
                 setSearchTerm("");
                 setSelectedCategory("All Categories");
-              }}>
+              }} className="w-full sm:w-auto">
                 Clear Filters
               </Button>
             </div>
@@ -117,8 +117,8 @@ export default function Opportunities() {
         </Card>
 
         {/* Results */}
-        <div className="mb-6">
-          <p className="text-gray-600">
+        <div className="mb-4 sm:mb-6">
+          <p className="text-sm sm:text-base text-gray-600">
             {opportunitiesLoading ? (
               "Loading opportunities..."
             ) : (
@@ -129,7 +129,7 @@ export default function Opportunities() {
 
         {/* Opportunities Grid */}
         {opportunitiesLoading ? (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {[...Array(6)].map((_, i) => (
               <Card key={i}>
                 <CardContent className="p-6">
@@ -146,7 +146,7 @@ export default function Opportunities() {
           </div>
         ) : filteredOpportunities.length > 0 ? (
           <>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
               {filteredOpportunities.map((opportunity) => (
                 <OpportunityCard
                   key={opportunity.id}
