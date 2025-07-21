@@ -29,11 +29,11 @@ export default function Landing() {
                     Find Opportunities
                   </button>
                   <button className="text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">
-                    For Churches
+                    For Nonprofits
                   </button>
-                  <button className="text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">
+                  <a href="/about" className="text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">
                     About
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -58,7 +58,7 @@ export default function Landing() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl lg:text-6xl font-bold leading-tight mb-6">
-                Connect. Serve. <span className="text-yellow-300">Strengthen Faith.</span>
+                Connect. Serve. <span className="text-yellow-300">Strengthen Communities.</span>
               </h1>
               <p className="text-xl lg:text-2xl mb-8 text-blue-100">
                 Bridge the gap between churches and volunteers. Discover opportunities to serve beyond your home congregation and strengthen the body of Christ.
@@ -82,7 +82,7 @@ export default function Landing() {
                 >
                   <a href="/api/login">
                     <Church className="mr-2 h-5 w-5" />
-                    Register Your Church
+                    Register Your Nonprofit
                   </a>
                 </Button>
               </div>
@@ -314,7 +314,7 @@ export default function Landing() {
             >
               <a href="/api/login">
                 <Church className="mr-2 h-5 w-5" />
-                Register Your Church
+                Register Your Nonprofit
               </a>
             </Button>
           </div>
@@ -347,7 +347,7 @@ export default function Landing() {
             </div>
             
             <div>
-              <h4 className="text-lg font-semibold mb-4">For Churches</h4>
+              <h4 className="text-lg font-semibold mb-4">For Nonprofits</h4>
               <ul className="space-y-2 text-gray-400">
                 <li>Get Started</li>
                 <li>Verification Process</li>
