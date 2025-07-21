@@ -64,11 +64,9 @@ export default function Navbar() {
                 ServeConnect
               </span>
             </Link>
-            {isAuthenticated && (
-              <div className="hidden sm:block ml-4 md:ml-6 lg:ml-10">
-                <NavLinks />
-              </div>
-            )}
+            <div className="hidden sm:block ml-4 md:ml-6 lg:ml-10">
+              <NavLinks />
+            </div>
           </div>
 
           <div className="hidden sm:block">
@@ -129,9 +127,9 @@ export default function Navbar() {
         {mobileMenuOpen && (
           <div className="sm:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t">
-              {isAuthenticated ? (
-                <>
-                  <NavLinks mobile />
+              <>
+                <NavLinks mobile />
+                {isAuthenticated ? (
                   <div className="pt-4 pb-3 border-t border-gray-200">
                     <div className="flex items-center px-5">
                       <Avatar className="h-10 w-10">
@@ -155,17 +153,17 @@ export default function Navbar() {
                       </Button>
                     </div>
                   </div>
-                </>
-              ) : (
-                <div className="space-y-3">
-                  <Button variant="outline" className="w-full" asChild>
-                    <a href="/auth">Sign In</a>
-                  </Button>
-                  <Button className="w-full" asChild>
-                    <a href="/auth">Get Started</a>
-                  </Button>
-                </div>
-              )}
+                ) : (
+                  <div className="pt-4 pb-3 border-t border-gray-200 space-y-3">
+                    <Button variant="outline" className="w-full" asChild>
+                      <a href="/auth">Sign In</a>
+                    </Button>
+                    <Button className="w-full" asChild>
+                      <a href="/auth">Get Started</a>
+                    </Button>
+                  </div>
+                )}
+              </>
             </div>
           </div>
         )}
