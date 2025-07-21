@@ -27,10 +27,12 @@ export const sessions = pgTable(
   (table) => [index("IDX_session_expire").on(table.expire)],
 );
 
-// User storage table (required for Replit Auth)
+// User storage table
 export const users = pgTable("users", {
-  id: varchar("id").primaryKey().notNull(),
+  id: serial("id").primaryKey(),
+  username: varchar("username", { length: 50 }).notNull().unique(),
   email: varchar("email").unique(),
+  password: varchar("password").notNull(),
   firstName: varchar("first_name"),
   lastName: varchar("last_name"),
   profileImageUrl: varchar("profile_image_url"),
@@ -54,7 +56,7 @@ export const organizations = pgTable("organizations", {
   website: varchar("website", { length: 255 }),
   denominationAffiliation: varchar("denomination_affiliation", { length: 100 }),
   isVerified: boolean("is_verified").default(false),
-  ownerId: varchar("owner_id").notNull().references(() => users.id),
+  ownerId: integer("owner_id").notNull().references(() => users.id),
   latitude: decimal("latitude", { precision: 10, scale: 7 }),
   longitude: decimal("longitude", { precision: 10, scale: 7 }),
   createdAt: timestamp("created_at").defaultNow(),
@@ -65,7 +67,7 @@ export const organizations = pgTable("organizations", {
 export const organizationMembers = pgTable("organization_members", {
   id: serial("id").primaryKey(),
   organizationId: integer("organization_id").notNull().references(() => organizations.id),
-  userId: varchar("user_id").notNull().references(() => users.id),
+  userId: integer("user_id").notNull().references(() => users.id),
   role: varchar("role", { length: 50 }).notNull(), // 'owner', 'admin', 'member'
   createdAt: timestamp("created_at").defaultNow(),
 });
@@ -86,7 +88,7 @@ export const opportunities = pgTable("opportunities", {
   isRecurring: boolean("is_recurring").default(false),
   recurringPattern: varchar("recurring_pattern", { length: 50 }), // 'weekly', 'monthly', etc.
   organizationId: integer("organization_id").notNull().references(() => organizations.id),
-  createdById: varchar("created_by_id").notNull().references(() => users.id),
+  createdById: integer("created_by_id").notNull().references(() => users.id),
   isActive: boolean("is_active").default(true),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
@@ -96,7 +98,7 @@ export const opportunities = pgTable("opportunities", {
 export const volunteerSignups = pgTable("volunteer_signups", {
   id: serial("id").primaryKey(),
   opportunityId: integer("opportunity_id").notNull().references(() => opportunities.id),
-  userId: varchar("user_id").notNull().references(() => users.id),
+  userId: integer("user_id").notNull().references(() => users.id),
   status: varchar("status", { length: 20 }).default("signed_up"), // 'signed_up', 'completed', 'cancelled'
   notes: text("notes"),
   hoursWorked: decimal("hours_worked", { precision: 4, scale: 2 }),
@@ -157,6 +159,13 @@ export const volunteerSignupsRelations = relations(volunteerSignups, ({ one }) =
 
 // Insert schemas
 export const insertUserSchema = createInsertSchema(users).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertUserSchemaWithPassword = createInsertSchema(users).omit({
+  id: true,
   createdAt: true,
   updatedAt: true,
 });
@@ -184,7 +193,7 @@ export const insertVolunteerSignupSchema = createInsertSchema(volunteerSignups).
 });
 
 // Types
-export type UpsertUser = typeof users.$inferInsert;
+export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 export type InsertOrganization = z.infer<typeof insertOrganizationSchema>;
 export type Organization = typeof organizations.$inferSelect;

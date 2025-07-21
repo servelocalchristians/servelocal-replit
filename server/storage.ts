@@ -5,7 +5,7 @@ import {
   volunteerSignups,
   organizationMembers,
   type User,
-  type UpsertUser,
+  type InsertUser,
   type InsertOrganization,
   type Organization,
   type InsertOpportunity,
@@ -20,9 +20,10 @@ import { db } from "./db";
 import { eq, and, desc, asc, sql, count } from "drizzle-orm";
 
 export interface IStorage {
-  // User operations (required for Replit Auth)
-  getUser(id: string): Promise<User | undefined>;
-  upsertUser(user: UpsertUser): Promise<User>;
+  // User operations (required for authentication)
+  getUser(id: number): Promise<User | undefined>;
+  getUserByUsername(username: string): Promise<User | undefined>;
+  createUser(user: InsertUser): Promise<User>;
   
   // Organization operations
   createOrganization(data: InsertOrganization): Promise<Organization>;
@@ -32,11 +33,11 @@ export interface IStorage {
   verifyOrganization(id: number): Promise<void>;
   
   // Organization member operations
-  addOrganizationMember(organizationId: number, userId: string, role: string): Promise<OrganizationMember>;
+  addOrganizationMember(organizationId: number, userId: number, role: string): Promise<OrganizationMember>;
   getOrganizationMembers(organizationId: number): Promise<(OrganizationMember & { user: User })[]>;
-  updateMemberRole(organizationId: number, userId: string, role: string): Promise<void>;
-  removeMemberFromOrganization(organizationId: number, userId: string): Promise<void>;
-  getUserOrganizations(userId: string): Promise<(OrganizationMember & { organization: Organization })[]>;
+  updateMemberRole(organizationId: number, userId: number, role: string): Promise<void>;
+  removeMemberFromOrganization(organizationId: number, userId: number): Promise<void>;
+  getUserOrganizations(userId: number): Promise<(OrganizationMember & { organization: Organization })[]>;
   
   // Opportunity operations
   createOpportunity(data: InsertOpportunity): Promise<Opportunity>;
@@ -54,12 +55,12 @@ export interface IStorage {
   // Volunteer signup operations
   signUpForOpportunity(data: InsertVolunteerSignup): Promise<VolunteerSignup>;
   getVolunteerSignups(opportunityId: number): Promise<(VolunteerSignup & { user: User })[]>;
-  getUserSignups(userId: string): Promise<(VolunteerSignup & { opportunity: OpportunityWithDetails })[]>;
+  getUserSignups(userId: number): Promise<(VolunteerSignup & { opportunity: OpportunityWithDetails })[]>;
   updateSignupStatus(id: number, status: string, hoursWorked?: number): Promise<VolunteerSignup>;
   cancelSignup(id: number): Promise<void>;
   
   // Dashboard data
-  getVolunteerStats(userId: string): Promise<{
+  getVolunteerStats(userId: number): Promise<{
     hoursVolunteered: number;
     opportunitiesCompleted: number;
     churchesServed: number;
@@ -73,22 +74,20 @@ export interface IStorage {
 
 export class DatabaseStorage implements IStorage {
   // User operations
-  async getUser(id: string): Promise<User | undefined> {
+  async getUser(id: number): Promise<User | undefined> {
     const [user] = await db.select().from(users).where(eq(users.id, id));
     return user;
   }
 
-  async upsertUser(userData: UpsertUser): Promise<User> {
+  async getUserByUsername(username: string): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.username, username));
+    return user;
+  }
+
+  async createUser(userData: InsertUser): Promise<User> {
     const [user] = await db
       .insert(users)
       .values(userData)
-      .onConflictDoUpdate({
-        target: users.id,
-        set: {
-          ...userData,
-          updatedAt: new Date(),
-        },
-      })
       .returning();
     return user;
   }
@@ -134,7 +133,7 @@ export class DatabaseStorage implements IStorage {
     };
   }
 
-  async getOrganizationsByOwner(ownerId: string): Promise<Organization[]> {
+  async getOrganizationsByOwner(ownerId: number): Promise<Organization[]> {
     return await db
       .select()
       .from(organizations)
@@ -159,7 +158,7 @@ export class DatabaseStorage implements IStorage {
   }
 
   // Organization member operations
-  async addOrganizationMember(organizationId: number, userId: string, role: string): Promise<OrganizationMember> {
+  async addOrganizationMember(organizationId: number, userId: number, role: string): Promise<OrganizationMember> {
     const [member] = await db
       .insert(organizationMembers)
       .values({ organizationId, userId, role })
@@ -184,7 +183,7 @@ export class DatabaseStorage implements IStorage {
     return members;
   }
 
-  async updateMemberRole(organizationId: number, userId: string, role: string): Promise<void> {
+  async updateMemberRole(organizationId: number, userId: number, role: string): Promise<void> {
     await db
       .update(organizationMembers)
       .set({ role })
@@ -196,7 +195,7 @@ export class DatabaseStorage implements IStorage {
       );
   }
 
-  async removeMemberFromOrganization(organizationId: number, userId: string): Promise<void> {
+  async removeMemberFromOrganization(organizationId: number, userId: number): Promise<void> {
     await db
       .delete(organizationMembers)
       .where(
@@ -207,7 +206,7 @@ export class DatabaseStorage implements IStorage {
       );
   }
 
-  async getUserOrganizations(userId: string): Promise<(OrganizationMember & { organization: Organization })[]> {
+  async getUserOrganizations(userId: number): Promise<(OrganizationMember & { organization: Organization })[]> {
     const userOrgs = await db
       .select({
         id: organizationMembers.id,
@@ -371,7 +370,7 @@ export class DatabaseStorage implements IStorage {
     return signups;
   }
 
-  async getUserSignups(userId: string): Promise<(VolunteerSignup & { opportunity: OpportunityWithDetails })[]> {
+  async getUserSignups(userId: number): Promise<(VolunteerSignup & { opportunity: OpportunityWithDetails })[]> {
     const signups = await db
       .select()
       .from(volunteerSignups)
@@ -427,7 +426,7 @@ export class DatabaseStorage implements IStorage {
   }
 
   // Dashboard data
-  async getVolunteerStats(userId: string): Promise<{
+  async getVolunteerStats(userId: number): Promise<{
     hoursVolunteered: number;
     opportunitiesCompleted: number;
     churchesServed: number;

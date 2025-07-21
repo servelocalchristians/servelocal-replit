@@ -12,7 +12,8 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
 export default function Navbar() {
-  const { user, isAuthenticated } = useAuth();
+  const { user, logoutMutation } = useAuth();
+  const isAuthenticated = !!user;
   const [location] = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -95,10 +96,8 @@ export default function Navbar() {
                         </p>
                       </div>
                     </DropdownMenuItem>
-                    <DropdownMenuItem>
-                      <a href="/api/logout" className="w-full">
-                        Log out
-                      </a>
+                    <DropdownMenuItem onClick={() => logoutMutation.mutate()}>
+                      Log out
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
@@ -106,10 +105,10 @@ export default function Navbar() {
             ) : (
               <div className="ml-4 flex items-center space-x-3">
                 <Button variant="outline" asChild>
-                  <a href="/api/login">Sign In</a>
+                  <a href="/auth">Sign In</a>
                 </Button>
                 <Button asChild>
-                  <a href="/api/login">Get Started</a>
+                  <a href="/auth">Get Started</a>
                 </Button>
               </div>
             )}
@@ -151,8 +150,8 @@ export default function Navbar() {
                       </div>
                     </div>
                     <div className="mt-3 px-2 space-y-1">
-                      <Button variant="ghost" className="w-full justify-start" asChild>
-                        <a href="/api/logout">Log out</a>
+                      <Button variant="ghost" className="w-full justify-start" onClick={() => logoutMutation.mutate()}>
+                        Log out
                       </Button>
                     </div>
                   </div>
@@ -160,10 +159,10 @@ export default function Navbar() {
               ) : (
                 <div className="space-y-3">
                   <Button variant="outline" className="w-full" asChild>
-                    <a href="/api/login">Sign In</a>
+                    <a href="/auth">Sign In</a>
                   </Button>
                   <Button className="w-full" asChild>
-                    <a href="/api/login">Get Started</a>
+                    <a href="/auth">Get Started</a>
                   </Button>
                 </div>
               )}
