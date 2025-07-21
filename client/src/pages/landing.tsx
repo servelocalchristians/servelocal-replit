@@ -41,10 +41,10 @@ export default function Landing() {
             <div className="hidden md:block">
               <div className="ml-4 flex items-center space-x-3">
                 <Button variant="outline" asChild>
-                  <a href="/api/login">Sign In</a>
+                  <a href="/auth">Sign In</a>
                 </Button>
                 <Button asChild>
-                  <a href="/api/login">Get Started</a>
+                  <a href="/auth">Get Started</a>
                 </Button>
               </div>
             </div>
