@@ -103,7 +103,7 @@ export default function Navbar() {
             ) : (
               <div className="ml-2 sm:ml-4 flex items-center space-x-2 sm:space-x-3">
                 <Button variant="outline" size="sm" className="text-xs sm:text-sm" asChild>
-                  <a href="/auth">Sign In</a>
+                  <a href="/auth?tab=login">Sign In</a>
                 </Button>
                 <Button size="sm" className="text-xs sm:text-sm" asChild>
                   <a href="/auth">Get Started</a>
@@ -156,7 +156,7 @@ export default function Navbar() {
                 ) : (
                   <div className="pt-4 pb-3 border-t border-gray-200 space-y-3">
                     <Button variant="outline" className="w-full" asChild>
-                      <a href="/auth">Sign In</a>
+                      <a href="/auth?tab=login">Sign In</a>
                     </Button>
                     <Button className="w-full" asChild>
                       <a href="/auth">Get Started</a>
