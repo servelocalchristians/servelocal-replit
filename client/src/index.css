@@ -85,6 +85,21 @@
   .mobile-center { text-align: center; }
   .mobile-full-width { width: 100%; }
   .mobile-stack > * { width: 100%; margin-bottom: 0.75rem; }
+  
+  /* Better form spacing on mobile */
+  .form-field {
+    margin-bottom: 1rem;
+  }
+  
+  /* Improved button spacing */
+  .btn-group {
+    gap: 0.75rem;
+  }
+  
+  /* Card content improvements */
+  .card-content {
+    padding: 1rem;
+  }
 }
 
 /* Tablet devices (641px to 1024px) */
@@ -100,6 +115,16 @@
   .container {
     padding-left: 2rem;
     padding-right: 2rem;
+  }
+  
+  /* Improved card layouts for tablets */
+  .card {
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Better grid spacing */
+  .grid-responsive {
+    gap: 1.25rem;
   }
 }
 

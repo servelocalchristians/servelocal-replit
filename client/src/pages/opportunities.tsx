@@ -3,12 +3,21 @@ import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
 import Navbar from "@/components/layout/navbar";
 import OpportunityCard from "@/components/opportunity-card";
 import { Search, Filter } from "lucide-react";
-import { type OpportunityWithDetails, type VolunteerSignup } from "@shared/schema";
+import {
+  type OpportunityWithDetails,
+  type VolunteerSignup,
+} from "@shared/schema";
 
 const categories = [
   "All Categories",
@@ -29,7 +38,9 @@ export default function Opportunities() {
   const [limit, setLimit] = useState(20);
 
   // Fetch opportunities
-  const { data: opportunities, isLoading: opportunitiesLoading } = useQuery<OpportunityWithDetails[]>({
+  const { data: opportunities, isLoading: opportunitiesLoading } = useQuery<
+    OpportunityWithDetails[]
+  >({
     queryKey: [
       "/api/opportunities",
       selectedCategory === "All Categories" ? undefined : selectedCategory,
@@ -41,32 +52,40 @@ export default function Opportunities() {
       if (selectedCategory !== "All Categories") {
         params.append("category", selectedCategory);
       }
-      
+
       const response = await fetch(`/api/opportunities?${params}`);
       return response.json();
     },
   });
 
   // Fetch user signups
-  const { data: userSignups } = useQuery<(VolunteerSignup & { opportunity: OpportunityWithDetails })[]>({
+  const { data: userSignups } = useQuery<
+    (VolunteerSignup & { opportunity: OpportunityWithDetails })[]
+  >({
     queryKey: ["/api/user/signups"],
   });
 
   // Filter opportunities based on search term
-  const filteredOpportunities = opportunities?.filter(opportunity =>
-    opportunity.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    opportunity.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    opportunity.organization.name.toLowerCase().includes(searchTerm.toLowerCase())
-  ) || [];
+  const filteredOpportunities =
+    opportunities?.filter(
+      (opportunity) =>
+        opportunity.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        opportunity.description
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase()) ||
+        opportunity.organization.name
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase()),
+    ) || [];
 
   const handleLoadMore = () => {
-    setLimit(prev => prev + 20);
+    setLimit((prev) => prev + 20);
   };
 
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
-      
+
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         {/* Header */}
         <div className="mb-6 sm:mb-8">
@@ -74,7 +93,8 @@ export default function Opportunities() {
             Find Volunteer Opportunities
           </h1>
           <p className="text-sm sm:text-base text-gray-600">
-            Discover meaningful ways to serve your community and strengthen your faith.
+            Discover meaningful ways to serve your community and strengthen your
+            faith.
           </p>
         </div>
 
@@ -91,8 +111,11 @@ export default function Opportunities() {
                   className="pl-10"
                 />
               </div>
-              
-              <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+
+              <Select
+                value={selectedCategory}
+                onValueChange={setSelectedCategory}
+              >
                 <SelectTrigger>
                   <Filter className="h-4 w-4 mr-2" />
                   <SelectValue />
@@ -105,11 +128,15 @@ export default function Opportunities() {
                   ))}
                 </SelectContent>
               </Select>
-              
-              <Button variant="outline" onClick={() => {
-                setSearchTerm("");
-                setSelectedCategory("All Categories");
-              }} className="w-full sm:w-auto">
+
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setSearchTerm("");
+                  setSelectedCategory("All Categories");
+                }}
+                className="w-full sm:w-auto"
+              >
                 Clear Filters
               </Button>
             </div>
@@ -119,11 +146,9 @@ export default function Opportunities() {
         {/* Results */}
         <div className="mb-4 sm:mb-6">
           <p className="text-sm sm:text-base text-gray-600">
-            {opportunitiesLoading ? (
-              "Loading opportunities..."
-            ) : (
-              `Found ${filteredOpportunities.length} opportunities`
-            )}
+            {opportunitiesLoading
+              ? "Loading opportunities..."
+              : `Found ${filteredOpportunities.length} opportunities`}
           </p>
         </div>
 
@@ -151,14 +176,15 @@ export default function Opportunities() {
                 <OpportunityCard
                   key={opportunity.id}
                   opportunity={opportunity}
-                  isUserSignedUp={userSignups?.some(signup => 
-                    signup.opportunityId === opportunity.id && 
-                    signup.status === 'signed_up'
+                  isUserSignedUp={userSignups?.some(
+                    (signup) =>
+                      signup.opportunityId === opportunity.id &&
+                      signup.status === "signed_up",
                   )}
                 />
               ))}
             </div>
-            
+
             {/* Load More Button */}
             {opportunities && opportunities.length >= limit && (
               <div className="text-center">
@@ -170,33 +196,33 @@ export default function Opportunities() {
           </>
         ) : (
           <Card>
-            <CardContent className="p-12 text-center">
-              <div className="mb-4">
-                <Search className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  No opportunities found
-                </h3>
-                <p className="text-gray-600 mb-6">
-                  {searchTerm || selectedCategory !== "All Categories"
-                    ? "Try adjusting your search or filters."
-                    : "Be the first to create an opportunity for your church!"}
-                </p>
-              </div>
-              <div className="space-y-2">
-                {(searchTerm || selectedCategory !== "All Categories") && (
-                  <Button 
-                    variant="outline" 
-                    onClick={() => {
-                      setSearchTerm("");
-                      setSelectedCategory("All Categories");
-                    }}
-                  >
-                    Clear Filters
-                  </Button>
-                )}
-                <Button>
-                  Register Your Church
-                </Button>
+            <CardContent className="p-8 sm:p-12 text-center">
+              <div className="space-y-4">
+                <Search className="h-12 w-12 text-gray-400 mx-auto" />
+                <div className="space-y-2">
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    No opportunities found
+                  </h3>
+                  <p className="text-gray-600">
+                    {searchTerm || selectedCategory !== "All Categories"
+                      ? "Try adjusting your search or filters."
+                      : "Be the first to create an opportunity for your church!"}
+                  </p>
+                </div>
+                <div className="space-y-2 pt-4">
+                  {(searchTerm || selectedCategory !== "All Categories") && (
+                    <Button
+                      variant="outline"
+                      onClick={() => {
+                        setSearchTerm("");
+                        setSelectedCategory("All Categories");
+                      }}
+                    >
+                      Clear Filters
+                    </Button>
+                  )}
+                  <Button>Register Your Church</Button>
+                </div>
               </div>
             </CardContent>
           </Card>

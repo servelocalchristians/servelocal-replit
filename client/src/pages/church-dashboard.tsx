@@ -8,8 +8,19 @@ import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/hooks/use-auth";
 import Navbar from "@/components/layout/navbar";
-import { Plus, Users, Calendar, BarChart3, Settings, Edit, Eye } from "lucide-react";
-import { type OrganizationWithDetails, type OpportunityWithDetails } from "@shared/schema";
+import {
+  Plus,
+  Users,
+  Calendar,
+  BarChart3,
+  Settings,
+  Edit,
+  Eye,
+} from "lucide-react";
+import {
+  type OrganizationWithDetails,
+  type OpportunityWithDetails,
+} from "@shared/schema";
 
 export default function ChurchDashboard() {
   const { user } = useAuth();
@@ -25,10 +36,11 @@ export default function ChurchDashboard() {
   const primaryOrganization = userOrganizations?.[0]?.organization;
 
   // Fetch organization details if we have one
-  const { data: organizationDetails, isLoading: detailsLoading } = useQuery<OrganizationWithDetails>({
-    queryKey: ["/api/organizations", primaryOrganization?.id],
-    enabled: !!primaryOrganization?.id,
-  });
+  const { data: organizationDetails, isLoading: detailsLoading } =
+    useQuery<OrganizationWithDetails>({
+      queryKey: ["/api/organizations", primaryOrganization?.id],
+      enabled: !!primaryOrganization?.id,
+    });
 
   // Fetch organization stats
   const { data: stats, isLoading: statsLoading } = useQuery({
@@ -37,10 +49,14 @@ export default function ChurchDashboard() {
   });
 
   // Fetch organization opportunities
-  const { data: opportunities, isLoading: opportunitiesLoading } = useQuery<OpportunityWithDetails[]>({
+  const { data: opportunities, isLoading: opportunitiesLoading } = useQuery<
+    OpportunityWithDetails[]
+  >({
     queryKey: ["/api/opportunities", primaryOrganization?.id],
     queryFn: async () => {
-      const response = await fetch(`/api/opportunities?organizationId=${primaryOrganization?.id}`);
+      const response = await fetch(
+        `/api/opportunities?organizationId=${primaryOrganization?.id}`,
+      );
       return response.json();
     },
     enabled: !!primaryOrganization?.id,
@@ -51,7 +67,8 @@ export default function ChurchDashboard() {
     if (!orgsLoading && !userOrganizations?.length) {
       toast({
         title: "No Church Found",
-        description: "Please register your church first to access the dashboard.",
+        description:
+          "Please register your church first to access the dashboard.",
       });
       navigate("/register-church");
     }
@@ -81,19 +98,19 @@ export default function ChurchDashboard() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
-      
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         {/* Header */}
-        <div className="flex justify-between items-center mb-8">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 sm:mb-8">
+          <div className="space-y-1">
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
               {primaryOrganization.name} Dashboard
             </h1>
             <p className="text-gray-600">
               Manage your volunteer opportunities and team
             </p>
           </div>
-          <Button asChild>
+          <Button asChild className="w-full sm:w-auto">
             <Link href="/create-opportunity">
               <Plus className="mr-2 h-4 w-4" />
               Post New Opportunity
@@ -101,51 +118,55 @@ export default function ChurchDashboard() {
           </Button>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
           {/* Main Content */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 space-y-6">
             {/* Stats Overview */}
-            <div className="grid md:grid-cols-3 gap-6 mb-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               <Card>
-                <CardContent className="p-6">
+                <CardContent className="p-4 sm:p-6">
                   {statsLoading ? (
                     <Skeleton className="h-16 w-full" />
                   ) : (
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-primary mb-1">
+                    <div className="text-center space-y-1">
+                      <div className="text-xl sm:text-2xl font-bold text-primary">
                         {stats?.activeOpportunities || 0}
                       </div>
-                      <div className="text-sm text-gray-600">Active Opportunities</div>
+                      <div className="text-xs sm:text-sm text-gray-600">
+                        Active Opportunities
+                      </div>
                     </div>
                   )}
                 </CardContent>
               </Card>
 
               <Card>
-                <CardContent className="p-6">
+                <CardContent className="p-4 sm:p-6">
                   {statsLoading ? (
                     <Skeleton className="h-16 w-full" />
                   ) : (
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-secondary mb-1">
+                    <div className="text-center space-y-1">
+                      <div className="text-xl sm:text-2xl font-bold text-secondary">
                         {stats?.totalVolunteers || 0}
                       </div>
-                      <div className="text-sm text-gray-600">Total Volunteers</div>
+                      <div className="text-xs sm:text-sm text-gray-600">
+                        Total Volunteers
+                      </div>
                     </div>
                   )}
                 </CardContent>
               </Card>
 
               <Card>
-                <CardContent className="p-6">
+                <CardContent className="p-4 sm:p-6">
                   {statsLoading ? (
                     <Skeleton className="h-16 w-full" />
                   ) : (
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-accent mb-1">
+                    <div className="text-center space-y-1">
+                      <div className="text-xl sm:text-2xl font-bold text-accent">
                         {stats?.completedOpportunities || 0}
                       </div>
-                      <div className="text-sm text-gray-600">Completed</div>
+                      <div className="text-xs sm:text-sm text-gray-600">Completed</div>
                     </div>
                   )}
                 </CardContent>
@@ -183,41 +204,51 @@ export default function ChurchDashboard() {
                 ) : opportunities && opportunities.length > 0 ? (
                   <div className="space-y-4">
                     {opportunities.map((opportunity) => (
-                      <div key={opportunity.id} className="border rounded-lg p-4 hover:bg-gray-50 transition-colors">
-                        <div className="flex justify-between items-start mb-3">
-                          <div className="flex-1">
-                            <h3 className="text-lg font-semibold text-gray-900 mb-1">
+                      <div
+                        key={opportunity.id}
+                        className="border rounded-lg p-4 sm:p-6 hover:bg-gray-50 transition-colors space-y-4"
+                      >
+                        <div className="flex flex-col sm:flex-row justify-between items-start gap-4">
+                          <div className="flex-1 space-y-2">
+                            <h3 className="text-lg font-semibold text-gray-900">
                               {opportunity.title}
                             </h3>
-                            <div className="flex items-center text-sm text-gray-600 mb-2">
-                              <Calendar className="h-4 w-4 mr-1" />
+                            <div className="flex items-center text-sm text-gray-600">
+                              <Calendar className="h-4 w-4 mr-2 flex-shrink-0" />
                               <span>
-                                {new Date(opportunity.date).toLocaleDateString()} • 
-                                {opportunity.startTime} - {opportunity.endTime}
+                                {new Date(
+                                  opportunity.date,
+                                ).toLocaleDateString()}{" "}
+                                • {opportunity.startTime} - {opportunity.endTime}
                               </span>
                             </div>
-                            <div className="flex items-center text-sm mb-3">
-                              <Badge 
-                                variant={opportunity.isActive ? "default" : "secondary"}
-                                className={opportunity.isActive ? "bg-secondary" : ""}
+                            <div className="flex items-center gap-3 text-sm">
+                              <Badge
+                                variant={
+                                  opportunity.isActive ? "default" : "secondary"
+                                }
+                                className={
+                                  opportunity.isActive ? "bg-secondary" : ""
+                                }
                               >
                                 {opportunity.isActive ? "Active" : "Inactive"}
                               </Badge>
-                              <span className="text-gray-600 ml-3">
-                                {opportunity.currentVolunteers} of {opportunity.volunteersNeeded} volunteers
+                              <span className="text-gray-600">
+                                {opportunity.currentVolunteers} of{" "}
+                                {opportunity.volunteersNeeded} volunteers
                               </span>
                             </div>
                           </div>
-                          <div className="flex gap-2">
-                            <Button size="sm" variant="outline">
+                          <div className="flex gap-2 w-full sm:w-auto">
+                            <Button size="sm" variant="outline" className="flex-1 sm:flex-none">
                               <Edit className="h-4 w-4" />
                             </Button>
-                            <Button size="sm" variant="outline">
+                            <Button size="sm" variant="outline" className="flex-1 sm:flex-none">
                               <Eye className="h-4 w-4" />
                             </Button>
                           </div>
                         </div>
-                        <div className="flex gap-3 text-sm">
+                        <div className="flex flex-wrap gap-3 text-sm pt-2 border-t">
                           <button className="text-primary hover:underline">
                             View Volunteers
                           </button>
@@ -294,26 +325,44 @@ export default function ChurchDashboard() {
                   <div className="space-y-3">
                     <div>
                       <p className="text-sm font-medium text-gray-700">Name</p>
-                      <p className="text-sm text-gray-600">{organizationDetails.name}</p>
+                      <p className="text-sm text-gray-600">
+                        {organizationDetails.name}
+                      </p>
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-gray-700">Location</p>
+                      <p className="text-sm font-medium text-gray-700">
+                        Location
+                      </p>
                       <p className="text-sm text-gray-600">
                         {organizationDetails.city}, {organizationDetails.state}
                       </p>
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-gray-700">Status</p>
-                      <Badge 
-                        variant={organizationDetails.isVerified ? "default" : "secondary"}
-                        className={organizationDetails.isVerified ? "bg-secondary" : ""}
+                      <p className="text-sm font-medium text-gray-700">
+                        Status
+                      </p>
+                      <Badge
+                        variant={
+                          organizationDetails.isVerified
+                            ? "default"
+                            : "secondary"
+                        }
+                        className={
+                          organizationDetails.isVerified ? "bg-secondary" : ""
+                        }
                       >
-                        {organizationDetails.isVerified ? "Verified" : "Pending Verification"}
+                        {organizationDetails.isVerified
+                          ? "Verified"
+                          : "Pending Verification"}
                       </Badge>
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-gray-700">Team Members</p>
-                      <p className="text-sm text-gray-600">{organizationDetails.members.length}</p>
+                      <p className="text-sm font-medium text-gray-700">
+                        Team Members
+                      </p>
+                      <p className="text-sm text-gray-600">
+                        {organizationDetails.members.length}
+                      </p>
                     </div>
                   </div>
                 ) : null}
@@ -334,9 +383,13 @@ export default function ChurchDashboard() {
                   {opportunities && opportunities.length > 0 && (
                     <div className="text-sm">
                       <div className="font-medium">Opportunity created</div>
-                      <div className="text-gray-600">{opportunities[0].title}</div>
+                      <div className="text-gray-600">
+                        {opportunities[0].title}
+                      </div>
                       <div className="text-gray-500 text-xs">
-                        {new Date(opportunities[0].createdAt!).toLocaleDateString()}
+                        {new Date(
+                          opportunities[0].createdAt!,
+                        ).toLocaleDateString()}
                       </div>
                     </div>
                   )}

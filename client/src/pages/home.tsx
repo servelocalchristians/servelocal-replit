@@ -7,13 +7,18 @@ import { Link } from "wouter";
 import Navbar from "@/components/layout/navbar";
 import OpportunityCard from "@/components/opportunity-card";
 import { Calendar, Clock, Users } from "lucide-react";
-import { type OpportunityWithDetails, type VolunteerSignup } from "@shared/schema";
+import {
+  type OpportunityWithDetails,
+  type VolunteerSignup,
+} from "@shared/schema";
 
 export default function Home() {
   const { user } = useAuth();
 
   // Fetch nearby opportunities
-  const { data: opportunities, isLoading: opportunitiesLoading } = useQuery<OpportunityWithDetails[]>({
+  const { data: opportunities, isLoading: opportunitiesLoading } = useQuery<
+    OpportunityWithDetails[]
+  >({
     queryKey: ["/api/opportunities"],
     queryFn: async () => {
       const response = await fetch(`/api/opportunities?limit=6`);
@@ -31,19 +36,25 @@ export default function Home() {
   });
 
   // Fetch user signups
-  const { data: userSignups, isLoading: signupsLoading } = useQuery<(VolunteerSignup & { opportunity: OpportunityWithDetails })[]>({
+  const { data: userSignups, isLoading: signupsLoading } = useQuery<
+    (VolunteerSignup & { opportunity: OpportunityWithDetails })[]
+  >({
     queryKey: ["/api/user/signups"],
   });
 
-  const upcomingSignups = userSignups?.filter(signup => 
-    signup.status === 'signed_up' && 
-    new Date(signup.opportunity.date) >= new Date()
-  ).slice(0, 3) || [];
+  const upcomingSignups =
+    userSignups
+      ?.filter(
+        (signup) =>
+          signup.status === "signed_up" &&
+          new Date(signup.opportunity.date) >= new Date(),
+      )
+      .slice(0, 3) || [];
 
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
-      
+
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         {/* Welcome Section */}
         <div className="mb-6 sm:mb-8">
@@ -61,7 +72,9 @@ export default function Home() {
             {/* Quick Actions */}
             <Card className="mb-6 sm:mb-8">
               <CardHeader>
-                <CardTitle className="text-lg sm:text-xl">Quick Actions</CardTitle>
+                <CardTitle className="text-lg sm:text-xl">
+                  Quick Actions
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
@@ -87,7 +100,12 @@ export default function Home() {
                 <h2 className="text-xl sm:text-2xl font-semibold text-gray-900">
                   Opportunities Near You
                 </h2>
-                <Button variant="outline" size="sm" asChild className="w-full sm:w-auto">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  asChild
+                  className="w-full sm:w-auto"
+                >
                   <Link href="/opportunities">View All</Link>
                 </Button>
               </div>
@@ -114,9 +132,10 @@ export default function Home() {
                     <OpportunityCard
                       key={opportunity.id}
                       opportunity={opportunity}
-                      isUserSignedUp={userSignups?.some(signup => 
-                        signup.opportunityId === opportunity.id && 
-                        signup.status === 'signed_up'
+                      isUserSignedUp={userSignups?.some(
+                        (signup) =>
+                          signup.opportunityId === opportunity.id &&
+                          signup.status === "signed_up",
                       )}
                     />
                   ))}
@@ -128,9 +147,7 @@ export default function Home() {
                       No opportunities available at the moment.
                     </p>
                     <Button asChild>
-                      <Link href="/register-church">
-                        Register Your Church
-                      </Link>
+                      <Link href="/register-church">Register Your Church</Link>
                     </Button>
                   </CardContent>
                 </Card>
@@ -164,19 +181,25 @@ export default function Home() {
                 ) : (
                   <div className="space-y-4">
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-600">Hours Volunteered</span>
+                      <span className="text-sm text-gray-600">
+                        Hours Volunteered
+                      </span>
                       <span className="text-2xl font-bold text-primary">
                         {stats?.hoursVolunteered || 0}
                       </span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-600">Opportunities Completed</span>
+                      <span className="text-sm text-gray-600">
+                        Opportunities Completed
+                      </span>
                       <span className="text-2xl font-bold text-secondary">
                         {stats?.opportunitiesCompleted || 0}
                       </span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-600">Churches Served</span>
+                      <span className="text-sm text-gray-600">
+                        Churches Served
+                      </span>
                       <span className="text-2xl font-bold text-accent">
                         {stats?.churchesServed || 0}
                       </span>
@@ -205,9 +228,15 @@ export default function Home() {
                 ) : upcomingSignups.length > 0 ? (
                   <div className="space-y-4">
                     {upcomingSignups.map((signup) => (
-                      <div key={signup.id} className="border-b pb-4 last:border-b-0">
+                      <div
+                        key={signup.id}
+                        className="border-b pb-4 last:border-b-0"
+                      >
                         <div className="text-sm text-gray-600 mb-1">
-                          {new Date(signup.opportunity.date).toLocaleDateString()} • {signup.opportunity.startTime}
+                          {new Date(
+                            signup.opportunity.date,
+                          ).toLocaleDateString()}{" "}
+                          • {signup.opportunity.startTime}
                         </div>
                         <div className="font-medium text-sm">
                           {signup.opportunity.title}

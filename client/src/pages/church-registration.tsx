@@ -71,7 +71,8 @@ export default function ChurchRegistration() {
     onSuccess: () => {
       toast({
         title: "Success!",
-        description: "Your church has been registered successfully. Welcome to ServeConnect!",
+        description:
+          "Your church has been registered successfully. Welcome to ServeConnect!",
       });
       queryClient.invalidateQueries({ queryKey: ["/api/organizations/my"] });
       navigate("/church-dashboard");
@@ -116,7 +117,7 @@ export default function ChurchRegistration() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
-      
+
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="text-center mb-12">
@@ -124,7 +125,8 @@ export default function ChurchRegistration() {
             Register Your Church
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Join our platform to connect with volunteers and strengthen your community through service opportunities
+            Join our platform to connect with volunteers and strengthen your
+            community through service opportunities
           </p>
         </div>
 
@@ -139,7 +141,7 @@ export default function ChurchRegistration() {
               Simple tools to post and manage volunteer opportunities
             </p>
           </div>
-          
+
           <div className="text-center p-6">
             <div className="bg-secondary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
               <CheckCircle className="h-8 w-8 text-secondary" />
@@ -149,7 +151,7 @@ export default function ChurchRegistration() {
               Secure, trusted environment for faith-based organizations
             </p>
           </div>
-          
+
           <div className="text-center p-6">
             <div className="bg-accent/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
               <MapPin className="h-8 w-8 text-accent" />
@@ -160,7 +162,7 @@ export default function ChurchRegistration() {
             </p>
           </div>
         </div>
-        
+
         <Card className="elevation-2">
           <CardHeader>
             <CardTitle className="flex items-center">
@@ -170,7 +172,10 @@ export default function ChurchRegistration() {
           </CardHeader>
           <CardContent className="p-6 lg:p-8">
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-6"
+              >
                 <FormField
                   control={form.control}
                   name="name"
@@ -211,7 +216,7 @@ export default function ChurchRegistration() {
                     <MapPin className="mr-2 h-5 w-5" />
                     Address Information
                   </h3>
-                  
+
                   <FormField
                     control={form.control}
                     name="address"
@@ -219,10 +224,7 @@ export default function ChurchRegistration() {
                       <FormItem>
                         <FormLabel>Street Address *</FormLabel>
                         <FormControl>
-                          <Input
-                            placeholder="123 Main Street"
-                            {...field}
-                          />
+                          <Input placeholder="123 Main Street" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -243,7 +245,7 @@ export default function ChurchRegistration() {
                         </FormItem>
                       )}
                     />
-                    
+
                     <FormField
                       control={form.control}
                       name="state"
@@ -257,7 +259,7 @@ export default function ChurchRegistration() {
                         </FormItem>
                       )}
                     />
-                    
+
                     <FormField
                       control={form.control}
                       name="zipCode"
@@ -276,7 +278,7 @@ export default function ChurchRegistration() {
 
                 <div className="space-y-4">
                   <h3 className="text-lg font-semibold">Contact Information</h3>
-                  
+
                   <div className="grid md:grid-cols-2 gap-4">
                     <FormField
                       control={form.control}
@@ -288,16 +290,13 @@ export default function ChurchRegistration() {
                             Phone Number
                           </FormLabel>
                           <FormControl>
-                            <Input
-                              placeholder="(555) 123-4567"
-                              {...field}
-                            />
+                            <Input placeholder="(555) 123-4567" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
                       )}
                     />
-                    
+
                     <FormField
                       control={form.control}
                       name="email"
@@ -367,8 +366,10 @@ export default function ChurchRegistration() {
                         Verification Process
                       </h4>
                       <p className="text-sm text-blue-700">
-                        Your organization will undergo a verification process to ensure the safety and trust of our community. 
-                        This typically takes 1-3 business days. You'll be notified once verification is complete.
+                        Your organization will undergo a verification process to
+                        ensure the safety and trust of our community. This
+                        typically takes 1-3 business days. You'll be notified
+                        once verification is complete.
                       </p>
                     </div>
                   </div>
@@ -380,7 +381,9 @@ export default function ChurchRegistration() {
                     disabled={createOrganizationMutation.isPending}
                     className="bg-primary hover:bg-blue-700"
                   >
-                    {createOrganizationMutation.isPending ? "Registering..." : "Register Church"}
+                    {createOrganizationMutation.isPending
+                      ? "Registering..."
+                      : "Register Church"}
                   </Button>
                   <Button
                     type="button"
@@ -401,8 +404,9 @@ export default function ChurchRegistration() {
             Join a Trusted Community
           </h3>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            ServeConnect is built specifically for faith-based organizations. We prioritize security, 
-            verification, and creating meaningful connections within the Christian community.
+            ServeConnect is built specifically for faith-based organizations. We
+            prioritize security, verification, and creating meaningful
+            connections within the Christian community.
           </p>
         </div>
       </main>

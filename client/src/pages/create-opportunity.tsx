@@ -6,7 +6,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import {
   Form,
   FormControl,
@@ -38,11 +44,13 @@ const categories = [
   "Technology",
 ];
 
-const formSchema = insertOpportunitySchema.extend({
-  requiredSkills: z.string().optional(),
-}).omit({
-  createdById: true,
-});
+const formSchema = insertOpportunitySchema
+  .extend({
+    requiredSkills: z.string().optional(),
+  })
+  .omit({
+    createdById: true,
+  });
 
 type FormData = z.infer<typeof formSchema>;
 
@@ -88,7 +96,8 @@ export default function CreateOpportunity() {
     if (!orgsLoading && !userOrganizations?.length) {
       toast({
         title: "No Church Found",
-        description: "Please register your church first to create opportunities.",
+        description:
+          "Please register your church first to create opportunities.",
       });
       navigate("/register-church");
     }
@@ -99,7 +108,10 @@ export default function CreateOpportunity() {
       const processedData = {
         ...data,
         requiredSkills: data.requiredSkills
-          ? data.requiredSkills.split(",").map(skill => skill.trim()).filter(Boolean)
+          ? data.requiredSkills
+              .split(",")
+              .map((skill) => skill.trim())
+              .filter(Boolean)
           : [],
       };
       await apiRequest("POST", "/api/opportunities", processedData);
@@ -152,29 +164,32 @@ export default function CreateOpportunity() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
-      
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+        <div className="text-center mb-8 sm:mb-12 space-y-2 sm:space-y-4">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">
             Create Volunteer Opportunity
           </h1>
-          <p className="text-xl text-gray-600">
+          <p className="text-lg sm:text-xl text-gray-600">
             Post a new opportunity to connect with volunteers in your community
           </p>
         </div>
-        
+
         <Card className="elevation-2">
-          <CardHeader>
+          <CardHeader className="pb-4 sm:pb-6">
             <CardTitle className="flex items-center">
               <Plus className="mr-2 h-5 w-5" />
               Opportunity Details
             </CardTitle>
           </CardHeader>
-          <CardContent className="p-6 lg:p-8">
+          <CardContent className="p-4 sm:p-6 lg:p-8 space-y-6">
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-6"
+              >
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                   <FormField
                     control={form.control}
                     name="title"
@@ -182,20 +197,26 @@ export default function CreateOpportunity() {
                       <FormItem>
                         <FormLabel>Opportunity Title *</FormLabel>
                         <FormControl>
-                          <Input placeholder="e.g., Community Food Drive" {...field} />
+                          <Input
+                            placeholder="e.g., Community Food Drive"
+                            {...field}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-                  
+
                   <FormField
                     control={form.control}
                     name="category"
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Category *</FormLabel>
-                        <Select onValueChange={field.onChange} value={field.value}>
+                        <Select
+                          onValueChange={field.onChange}
+                          value={field.value}
+                        >
                           <FormControl>
                             <SelectTrigger>
                               <SelectValue placeholder="Select a category" />
@@ -233,7 +254,7 @@ export default function CreateOpportunity() {
                   )}
                 />
 
-                <div className="grid md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
                   <FormField
                     control={form.control}
                     name="date"
@@ -250,7 +271,7 @@ export default function CreateOpportunity() {
                       </FormItem>
                     )}
                   />
-                  
+
                   <FormField
                     control={form.control}
                     name="startTime"
@@ -267,7 +288,7 @@ export default function CreateOpportunity() {
                       </FormItem>
                     )}
                   />
-                  
+
                   <FormField
                     control={form.control}
                     name="endTime"
@@ -299,14 +320,16 @@ export default function CreateOpportunity() {
                             min="1"
                             placeholder="12"
                             {...field}
-                            onChange={(e) => field.onChange(parseInt(e.target.value) || 1)}
+                            onChange={(e) =>
+                              field.onChange(parseInt(e.target.value) || 1)
+                            }
                           />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-                  
+
                   <FormField
                     control={form.control}
                     name="requiredSkills"
@@ -371,7 +394,10 @@ export default function CreateOpportunity() {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel>Recurring Pattern</FormLabel>
-                          <Select onValueChange={field.onChange} value={field.value || ""}>
+                          <Select
+                            onValueChange={field.onChange}
+                            value={field.value || ""}
+                          >
                             <FormControl>
                               <SelectTrigger>
                                 <SelectValue placeholder="Select recurring pattern" />
@@ -379,7 +405,9 @@ export default function CreateOpportunity() {
                             </FormControl>
                             <SelectContent>
                               <SelectItem value="weekly">Weekly</SelectItem>
-                              <SelectItem value="biweekly">Bi-weekly</SelectItem>
+                              <SelectItem value="biweekly">
+                                Bi-weekly
+                              </SelectItem>
                               <SelectItem value="monthly">Monthly</SelectItem>
                             </SelectContent>
                           </Select>
@@ -398,7 +426,9 @@ export default function CreateOpportunity() {
                       <FormItem>
                         <FormLabel>Organization</FormLabel>
                         <Select
-                          onValueChange={(value) => field.onChange(parseInt(value))}
+                          onValueChange={(value) =>
+                            field.onChange(parseInt(value))
+                          }
                           value={field.value.toString()}
                         >
                           <FormControl>
@@ -423,18 +453,21 @@ export default function CreateOpportunity() {
                   />
                 )}
 
-                <div className="flex gap-4 pt-6">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-6">
                   <Button
                     type="submit"
                     disabled={createOpportunityMutation.isPending}
-                    className="bg-primary hover:bg-blue-700"
+                    className="bg-primary hover:bg-blue-700 w-full sm:w-auto flex-1 sm:flex-none"
                   >
-                    {createOpportunityMutation.isPending ? "Creating..." : "Post Opportunity"}
+                    {createOpportunityMutation.isPending
+                      ? "Creating..."
+                      : "Post Opportunity"}
                   </Button>
                   <Button
                     type="button"
                     variant="outline"
                     onClick={() => navigate("/church-dashboard")}
+                    className="w-full sm:w-auto"
                   >
                     Cancel
                   </Button>
