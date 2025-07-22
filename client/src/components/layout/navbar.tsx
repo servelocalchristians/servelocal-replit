@@ -60,7 +60,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <Link href="/">
-              <span className="text-xl sm:text-2xl font-bold text-primary cursor-pointer">
+              <span className="text-xl sm:text-2xl font-bold text-primary cursor-pointer hover:text-primary/80 transition-colors duration-200">
                 ServeConnect
               </span>
             </Link>

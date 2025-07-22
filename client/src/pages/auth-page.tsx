@@ -4,13 +4,26 @@ import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { insertUserSchema } from "@shared/schema";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Heart, Users, Building } from "lucide-react";
 import { Redirect } from "wouter";
 
@@ -19,12 +32,14 @@ const loginSchema = z.object({
   password: z.string().min(6, "Password must be at least 6 characters"),
 });
 
-const registerSchema = insertUserSchema.extend({
-  confirmPassword: z.string(),
-}).refine((data) => data.password === data.confirmPassword, {
-  message: "Passwords don't match",
-  path: ["confirmPassword"],
-});
+const registerSchema = insertUserSchema
+  .extend({
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ["confirmPassword"],
+  });
 
 type LoginForm = z.infer<typeof loginSchema>;
 type RegisterForm = z.infer<typeof registerSchema>;
@@ -33,23 +48,23 @@ export default function AuthPage() {
   const { user, loginMutation, registerMutation } = useAuth();
   const [location] = useLocation();
   const [activeTab, setActiveTab] = useState("register");
-  
+
   // Check URL parameters for login tab
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
-    const tab = urlParams.get('tab');
-    if (tab === 'login') {
-      setActiveTab('login');
+    const tab = urlParams.get("tab");
+    if (tab === "login") {
+      setActiveTab("login");
     } else {
-      setActiveTab('register');
+      setActiveTab("register");
     }
   }, [location]);
-  
+
   // Redirect to home if already authenticated
   if (user) {
     return <Redirect to="/" />;
   }
-  
+
   const loginForm = useForm<LoginForm>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -80,16 +95,54 @@ export default function AuthPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row">
+    <div className="min-h-screen bg-background">
+      {/* Header */}
+      <header className="bg-white shadow-md sticky top-0 z-50">
+        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center">
+              <span className="text-xl sm:text-2xl font-bold text-primary">
+                ServeConnect
+              </span>
+              <div className="hidden md:block ml-6 lg:ml-10">
+                <div className="flex items-baseline space-x-4">
+                  <button className="text-gray-700 hover:text-primary px-2 lg:px-3 py-2 rounded-md text-sm font-medium">
+                    Find Opportunities
+                  </button>
+                  <button className="text-gray-700 hover:text-primary px-2 lg:px-3 py-2 rounded-md text-sm font-medium">
+                    For Nonprofits
+                  </button>
+                  <a
+                    href="/about"
+                    className="text-gray-700 hover:text-primary px-2 lg:px-3 py-2 rounded-md text-sm font-medium"
+                  >
+                    About
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      {/*<div className="min-h-screen flex flex-col lg:flex-row">*/}
       {/* Left Side - Forms */}
       <div className="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-8 bg-white">
         <div className="w-full max-w-md">
           <div className="text-center mb-6 lg:mb-8">
-            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Welcome to ServeConnect</h1>
-            <p className="text-sm sm:text-base text-gray-600">Connect with volunteer opportunities in your community</p>
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
+              Welcome to ServeConnect
+            </h1>
+            <p className="text-sm sm:text-base text-gray-600">
+              Connect with volunteer opportunities in your community
+            </p>
           </div>
 
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+          <Tabs
+            value={activeTab}
+            onValueChange={setActiveTab}
+            className="w-full"
+          >
             <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="login">Login</TabsTrigger>
               <TabsTrigger value="register">Register</TabsTrigger>
@@ -105,7 +158,10 @@ export default function AuthPage() {
                 </CardHeader>
                 <CardContent>
                   <Form {...loginForm}>
-                    <form onSubmit={loginForm.handleSubmit(onLogin)} className="space-y-4">
+                    <form
+                      onSubmit={loginForm.handleSubmit(onLogin)}
+                      className="space-y-4"
+                    >
                       <FormField
                         control={loginForm.control}
                         name="username"
@@ -113,7 +169,10 @@ export default function AuthPage() {
                           <FormItem>
                             <FormLabel>Username</FormLabel>
                             <FormControl>
-                              <Input placeholder="Enter your username" {...field} />
+                              <Input
+                                placeholder="Enter your username"
+                                {...field}
+                              />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -126,7 +185,11 @@ export default function AuthPage() {
                           <FormItem>
                             <FormLabel>Password</FormLabel>
                             <FormControl>
-                              <Input type="password" placeholder="Enter your password" {...field} />
+                              <Input
+                                type="password"
+                                placeholder="Enter your password"
+                                {...field}
+                              />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -155,7 +218,10 @@ export default function AuthPage() {
                 </CardHeader>
                 <CardContent>
                   <Form {...registerForm}>
-                    <form onSubmit={registerForm.handleSubmit(onRegister)} className="space-y-4">
+                    <form
+                      onSubmit={registerForm.handleSubmit(onRegister)}
+                      className="space-y-4"
+                    >
                       <div className="grid grid-cols-2 gap-4">
                         <FormField
                           control={registerForm.control}
@@ -204,7 +270,11 @@ export default function AuthPage() {
                           <FormItem>
                             <FormLabel>Email</FormLabel>
                             <FormControl>
-                              <Input type="email" placeholder="john@example.com" {...field} />
+                              <Input
+                                type="email"
+                                placeholder="john@example.com"
+                                {...field}
+                              />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -217,7 +287,11 @@ export default function AuthPage() {
                           <FormItem>
                             <FormLabel>Password</FormLabel>
                             <FormControl>
-                              <Input type="password" placeholder="Create a password" {...field} />
+                              <Input
+                                type="password"
+                                placeholder="Create a password"
+                                {...field}
+                              />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -230,7 +304,11 @@ export default function AuthPage() {
                           <FormItem>
                             <FormLabel>Confirm Password</FormLabel>
                             <FormControl>
-                              <Input type="password" placeholder="Confirm your password" {...field} />
+                              <Input
+                                type="password"
+                                placeholder="Confirm your password"
+                                {...field}
+                              />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -241,7 +319,9 @@ export default function AuthPage() {
                         className="w-full"
                         disabled={registerMutation.isPending}
                       >
-                        {registerMutation.isPending ? "Creating account..." : "Create Account"}
+                        {registerMutation.isPending
+                          ? "Creating account..."
+                          : "Create Account"}
                       </Button>
                     </form>
                   </Form>
@@ -259,42 +339,52 @@ export default function AuthPage() {
             Strengthen Communities Together
           </h2>
           <p className="text-lg lg:text-xl mb-6 lg:mb-8 text-blue-100">
-            Connect churches and nonprofits with volunteers to create lasting positive change in your community.
+            Connect churches and nonprofits with volunteers to create lasting
+            positive change in your community.
           </p>
-          
+
           <div className="grid gap-6 text-left">
             <div className="flex items-start space-x-4">
               <div className="bg-white/20 p-3 rounded-full">
                 <Heart className="h-6 w-6" />
               </div>
               <div>
-                <h3 className="font-semibold mb-2">Find Meaningful Opportunities</h3>
+                <h3 className="font-semibold mb-2">
+                  Find Meaningful Opportunities
+                </h3>
                 <p className="text-blue-100 text-sm">
-                  Discover volunteer opportunities that match your skills and passion for serving others.
+                  Discover volunteer opportunities that match your skills and
+                  passion for serving others.
                 </p>
               </div>
             </div>
-            
+
             <div className="flex items-start space-x-4">
               <div className="bg-white/20 p-3 rounded-full">
                 <Users className="h-6 w-6" />
               </div>
               <div>
-                <h3 className="font-semibold mb-2">Connect Across Organizations</h3>
+                <h3 className="font-semibold mb-2">
+                  Connect Across Organizations
+                </h3>
                 <p className="text-blue-100 text-sm">
-                  Build relationships with volunteers and organizations beyond your home church.
+                  Build relationships with volunteers and organizations beyond
+                  your home church.
                 </p>
               </div>
             </div>
-            
+
             <div className="flex items-start space-x-4">
               <div className="bg-white/20 p-3 rounded-full">
                 <Building className="h-6 w-6" />
               </div>
               <div>
-                <h3 className="font-semibold mb-2">Strengthen Your Community</h3>
+                <h3 className="font-semibold mb-2">
+                  Strengthen Your Community
+                </h3>
                 <p className="text-blue-100 text-sm">
-                  Work together like Nehemiah's tribes to rebuild and strengthen your local community.
+                  Work together like Nehemiah's tribes to rebuild and strengthen
+                  your local community.
                 </p>
               </div>
             </div>
