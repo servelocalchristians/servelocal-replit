@@ -121,25 +121,6 @@ export default function AuthPage() {
                 </div>
               </div>
             </div>
-
-            {/* Mobile menu button */}
-            <div className="md:hidden">
-              <Button size="sm" asChild>
-                <a href="/auth">Start</a>
-              </Button>
-            </div>
-
-            {/* Desktop buttons */}
-            <div className="hidden md:block">
-              <div className="ml-4 flex items-center space-x-2 lg:space-x-3">
-                <Button variant="outline" size="sm" asChild>
-                  <a href="/auth?tab=login">Sign In</a>
-                </Button>
-                <Button size="sm" asChild>
-                  <a href="/auth">Get Started</a>
-                </Button>
-              </div>
-            </div>
           </div>
         </nav>
       </header>
