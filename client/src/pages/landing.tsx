@@ -347,7 +347,6 @@ export default function Landing() {
             </Button>
             <Button
               size="lg"
-              variant="outline"
               className="border-2 border-white text-white hover:bg-gray-100 elevation-2"
               asChild
             >
