@@ -347,7 +347,7 @@ export default function Landing() {
             </Button>
             <Button
               size="lg"
-              className="border-2 border-white text-white hover:bg-gray-100 elevation-2"
+              className="bg-white text-primary hover:bg-gray-100 elevation-2"
               asChild
             >
               <a href="/auth">
