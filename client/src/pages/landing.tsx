@@ -22,7 +22,9 @@ export default function Landing() {
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
-              <span className="text-xl sm:text-2xl font-bold text-primary">ServeConnect</span>
+              <span className="text-xl sm:text-2xl font-bold text-primary">
+                ServeConnect
+              </span>
               <div className="hidden md:block ml-6 lg:ml-10">
                 <div className="flex items-baseline space-x-4">
                   <button className="text-gray-700 hover:text-primary px-2 lg:px-3 py-2 rounded-md text-sm font-medium">
@@ -31,20 +33,23 @@ export default function Landing() {
                   <button className="text-gray-700 hover:text-primary px-2 lg:px-3 py-2 rounded-md text-sm font-medium">
                     For Nonprofits
                   </button>
-                  <a href="/about" className="text-gray-700 hover:text-primary px-2 lg:px-3 py-2 rounded-md text-sm font-medium">
+                  <a
+                    href="/about"
+                    className="text-gray-700 hover:text-primary px-2 lg:px-3 py-2 rounded-md text-sm font-medium"
+                  >
                     About
                   </a>
                 </div>
               </div>
             </div>
-            
+
             {/* Mobile menu button */}
             <div className="md:hidden">
               <Button size="sm" asChild>
                 <a href="/auth">Start</a>
               </Button>
             </div>
-            
+
             {/* Desktop buttons */}
             <div className="hidden md:block">
               <div className="ml-4 flex items-center space-x-2 lg:space-x-3">
@@ -66,14 +71,17 @@ export default function Landing() {
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <div className="text-center lg:text-left">
               <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold leading-tight mb-4 sm:mb-6">
-                Connect. Serve. <span className="text-yellow-300">Strengthen Communities.</span>
+                Connect. Serve.{" "}
+                <span className="text-yellow-300">Strengthen Communities.</span>
               </h1>
               <p className="text-lg sm:text-xl lg:text-2xl mb-6 sm:mb-8 text-blue-100">
-                Bridge the gap between churches and volunteers. Discover opportunities to serve beyond your home congregation and strengthen the body of Christ.
+                Bridge the gap between nonprofits and volunteers. Discover
+                opportunities to serve beyond your usual groups and strengthen
+                the your whole community.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
-                <Button 
-                  size="lg" 
+                <Button
+                  size="lg"
                   className="bg-secondary hover:bg-green-600 text-white elevation-2 w-full sm:w-auto"
                   asChild
                 >
@@ -82,8 +90,8 @@ export default function Landing() {
                     Find Opportunities
                   </a>
                 </Button>
-                <Button 
-                  size="lg" 
+                <Button
+                  size="lg"
                   variant="outline"
                   className="border-2 border-white text-white hover:bg-white hover:text-primary w-full sm:w-auto"
                   asChild
@@ -96,9 +104,9 @@ export default function Landing() {
               </div>
             </div>
             <div className="relative order-first lg:order-last">
-              <img 
-                src="https://images.unsplash.com/photo-1593113598332-cd288d649433?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" 
-                alt="Diverse group of volunteers serving together" 
+              <img
+                src="https://images.unsplash.com/photo-1593113598332-cd288d649433?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
+                alt="Diverse group of volunteers serving together"
                 className="rounded-xl elevation-3 w-full h-48 sm:h-64 lg:h-auto object-cover"
               />
             </div>
@@ -114,38 +122,48 @@ export default function Landing() {
               How ServeConnect Works
             </h2>
             <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-              Simple, secure, and designed for faith communities of all sizes
+              Simple, secure, and designed for faith and nonprofit communities
+              of all sizes
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             <div className="text-center p-4 sm:p-6">
               <div className="bg-primary/10 w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
                 <UserPlus className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
               </div>
-              <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">Easy Registration</h3>
+              <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">
+                Easy Registration
+              </h3>
               <p className="text-sm sm:text-base text-gray-600">
-                Quick signup for volunteers and secure church verification process ensures trust and safety.
+                Quick signup for volunteers and secure church verification
+                process ensures trust and safety.
               </p>
             </div>
-            
+
             <div className="text-center p-4 sm:p-6">
               <div className="bg-secondary/10 w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
                 <MapPin className="h-6 w-6 sm:h-8 sm:w-8 text-secondary" />
               </div>
-              <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">Location-Based Matching</h3>
+              <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">
+                Location-Based Matching
+              </h3>
               <p className="text-sm sm:text-base text-gray-600">
-                Find opportunities near you and get notifications for new volunteer needs in your area.
+                Find opportunities near you and get notifications for new
+                volunteer needs in your area.
               </p>
             </div>
-            
+
             <div className="text-center p-4 sm:p-6 sm:col-span-2 lg:col-span-1">
               <div className="bg-accent/10 w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
                 <Users className="h-6 w-6 sm:h-8 sm:w-8 text-accent" />
               </div>
-              <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">Role-Based Management</h3>
+              <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">
+                Role-Based Management
+              </h3>
               <p className="text-sm sm:text-base text-gray-600">
-                Church leaders can assign roles and permissions to team members for efficient opportunity management.
+                Church leaders can assign roles and permissions to team members
+                for efficient opportunity management.
               </p>
             </div>
           </div>
@@ -160,17 +178,20 @@ export default function Landing() {
               Powerful Dashboards for Every User
             </h2>
             <p className="text-xl text-gray-600">
-              Whether you're a volunteer or church administrator, manage everything from one place
+              Whether you're a volunteer, church, or nonprofit administrator,
+              manage everything from one place
             </p>
           </div>
-          
+
           {/* Sample Opportunity Cards */}
           <div className="grid md:grid-cols-2 gap-6 mb-12">
             <Card className="elevation-2">
               <CardContent className="p-6">
                 <div className="flex justify-between items-start mb-3">
                   <div>
-                    <h3 className="text-lg font-semibold">Community Food Drive</h3>
+                    <h3 className="text-lg font-semibold">
+                      Community Food Drive
+                    </h3>
                     <p className="text-gray-600">Grace Baptist Church</p>
                   </div>
                   <span className="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-sm font-medium">
@@ -192,7 +213,8 @@ export default function Landing() {
                   <span>5 of 12 volunteers signed up</span>
                 </div>
                 <p className="text-gray-700 mb-4 text-sm">
-                  Help sort and distribute food to local families in need. No experience required, just a heart to serve.
+                  Help sort and distribute food to local families in need. No
+                  experience required, just a heart to serve.
                 </p>
                 <Button size="sm" asChild>
                   <a href="/auth">Sign Up</a>
@@ -204,7 +226,9 @@ export default function Landing() {
               <CardContent className="p-6">
                 <div className="flex justify-between items-start mb-3">
                   <div>
-                    <h3 className="text-lg font-semibold">Youth Mentorship Program</h3>
+                    <h3 className="text-lg font-semibold">
+                      Youth Mentorship Program
+                    </h3>
                     <p className="text-gray-600">New Life Community Church</p>
                   </div>
                   <span className="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-sm font-medium">
@@ -226,7 +250,8 @@ export default function Landing() {
                   <span>3 of 8 mentors needed</span>
                 </div>
                 <p className="text-gray-700 mb-4 text-sm">
-                  Be a positive influence in a teenager's life through weekly mentorship sessions.
+                  Be a positive influence in a teenager's life through weekly
+                  mentorship sessions.
                 </p>
                 <Button size="sm" asChild>
                   <a href="/auth">Sign Up</a>
@@ -245,31 +270,36 @@ export default function Landing() {
               Built for Trust and Safety
             </h2>
             <p className="text-xl text-gray-600">
-              Your security and the integrity of our faith community are our top priorities
+              Your security and the integrity of our faith community are our top
+              priorities
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="text-center">
               <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Shield className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Secure Authentication</h3>
+              <h3 className="text-lg font-semibold mb-2">
+                Secure Authentication
+              </h3>
               <p className="text-gray-600 text-sm">
                 Email verification and secure login protect your account
               </p>
             </div>
-            
+
             <div className="text-center">
               <div className="bg-secondary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <CheckCircle className="h-8 w-8 text-secondary" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Church Verification</h3>
+              <h3 className="text-lg font-semibold mb-2">
+                Church Verification
+              </h3>
               <p className="text-gray-600 text-sm">
                 All churches undergo verification to ensure legitimacy
               </p>
             </div>
-            
+
             <div className="text-center">
               <div className="bg-accent/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <ShieldQuestion className="h-8 w-8 text-accent" />
@@ -279,7 +309,7 @@ export default function Landing() {
                 Controlled access ensures only authorized users can post
               </p>
             </div>
-            
+
             <div className="text-center">
               <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Lock className="h-8 w-8 text-purple-600" />
@@ -300,12 +330,13 @@ export default function Landing() {
             Ready to Strengthen Your Community?
           </h2>
           <p className="text-xl mb-8 text-blue-100">
-            Join thousands of believers already connecting and serving through ServeConnect
+            Join thousands of believers already connecting and serving through
+            ServeConnect
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               className="bg-white text-primary hover:bg-gray-100 elevation-2"
               asChild
             >
@@ -314,10 +345,9 @@ export default function Landing() {
                 Sign Up as Volunteer
               </a>
             </Button>
-            <Button 
-              size="lg" 
-              variant="outline"
-              className="border-2 border-white text-white hover:bg-white hover:text-primary"
+            <Button
+              size="lg"
+              className="bg-white text-primary hover:bg-gray-100 elevation-2"
               asChild
             >
               <a href="/auth">
@@ -326,7 +356,7 @@ export default function Landing() {
               </a>
             </Button>
           </div>
-          
+
           <p className="text-sm text-blue-100 mt-6">
             Free to use • No hidden fees • Secure platform
           </p>
@@ -343,7 +373,7 @@ export default function Landing() {
                 Strengthening the body of Christ through collaborative service.
               </p>
             </div>
-            
+
             <div>
               <h4 className="text-lg font-semibold mb-4">For Volunteers</h4>
               <ul className="space-y-2 text-gray-400">
@@ -353,7 +383,7 @@ export default function Landing() {
                 <li>Safety Guidelines</li>
               </ul>
             </div>
-            
+
             <div>
               <h4 className="text-lg font-semibold mb-4">For Nonprofits</h4>
               <ul className="space-y-2 text-gray-400">
@@ -363,7 +393,7 @@ export default function Landing() {
                 <li>Resources</li>
               </ul>
             </div>
-            
+
             <div>
               <h4 className="text-lg font-semibold mb-4">Support</h4>
               <ul className="space-y-2 text-gray-400">
@@ -374,9 +404,12 @@ export default function Landing() {
               </ul>
             </div>
           </div>
-          
+
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 ServeConnect. All rights reserved. Built with faith for the faith community.</p>
+            <p>
+              &copy; 2024 ServeConnect. All rights reserved. Built with faith
+              for the faith community.
+            </p>
           </div>
         </div>
       </footer>

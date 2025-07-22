@@ -2,7 +2,7 @@
 
 ## Overview
 
-ServeConnect is a full-stack web application that connects volunteers with churches and organizations to find and manage volunteer opportunities. The platform enables churches to post volunteer opportunities and allows individuals to discover and sign up for community service activities.
+ServeConnect is a full-stack web application that connects volunteers with churches and organizations to find and manage volunteer opportunities. The platform enables churches to post volunteer opportunities and volunteers to discover and sign up for service opportunities in their community.
 
 ## User Preferences
 
@@ -48,76 +48,71 @@ Preferred communication style: Simple, everyday language.
 
 ### Organization Management
 - Church/organization registration and verification
-- Multi-member organizations with role assignments
-- Organization dashboards for managing opportunities
-- Location-based organization discovery
+- Organization ownership and member management
+- Role-based permissions within organizations
 
-### Opportunity System
-- Flexible opportunity creation with categories and requirements
-- Date/time scheduling with volunteer capacity limits
-- Skill-based matching and filtering
-- Real-time signup tracking and status updates
+### Opportunity Management
+- Creation and management of volunteer opportunities
+- Categories, skill requirements, and scheduling
+- Volunteer signup and status tracking
+- Progress tracking for opportunity fulfillment
 
 ### Data Models
-- Users: Profile information, authentication data
-- Organizations: Church/nonprofit details, verification status
-- Opportunities: Volunteer positions with requirements and scheduling
-- Volunteer Signups: User-opportunity relationships with status tracking
-- Organization Members: Role-based organization access
+Key entities include:
+- **Users**: Authentication, profiles, and volunteer history
+- **Organizations**: Churches and nonprofits posting opportunities
+- **Opportunities**: Volunteer positions with details and requirements
+- **Volunteer Signups**: User registrations for specific opportunities
+- **Organization Members**: Relationship between users and organizations
 
 ## Data Flow
 
-1. **Authentication Flow**: User authenticates via Replit Auth → OIDC verification → Session creation → User profile lookup/creation
-2. **Opportunity Discovery**: Frontend queries opportunities API → Backend filters by location/category → Returns enriched data with organization details
-3. **Signup Process**: User selects opportunity → Frontend validates capacity → Backend creates signup record → Real-time updates to opportunity status
-4. **Organization Management**: Church admin creates organization → Verification process → Opportunity creation and management → Member management
+1. **Authentication Flow**: Users authenticate via Replit Auth OIDC, sessions stored in PostgreSQL
+2. **Organization Registration**: Organizations register and are verified before posting opportunities
+3. **Opportunity Discovery**: Volunteers browse and filter opportunities by category, location, skills
+4. **Signup Process**: Volunteers sign up for opportunities with status tracking
+5. **Management Dashboard**: Organizations manage their opportunities and volunteer signups
 
 ## External Dependencies
 
 ### Core Dependencies
-- **@neondatabase/serverless**: PostgreSQL database connectivity
-- **@radix-ui/***: Accessible UI component primitives
+- **@neondatabase/serverless**: PostgreSQL database client with WebSocket support
+- **drizzle-orm**: Type-safe ORM with PostgreSQL dialect
+- **express**: Web server framework
+- **passport**: Authentication middleware (configured for OIDC)
+- **connect-pg-simple**: PostgreSQL session store
+
+### Frontend Dependencies
 - **@tanstack/react-query**: Server state management and caching
-- **drizzle-orm & drizzle-kit**: Type-safe database operations and migrations
-- **express & passport**: Server framework and authentication
-- **react-hook-form & zod**: Form handling and validation
+- **wouter**: Lightweight React routing
+- **react-hook-form**: Form handling with validation
+- **zod**: Schema validation library
+- **tailwindcss**: Utility-first CSS framework
+- **@radix-ui/***: Accessible UI component primitives
 
-### Development Tools
-- **Vite**: Fast development server and build tool
-- **TypeScript**: Type safety across the entire stack
-- **Tailwind CSS**: Utility-first styling framework
-- **ESBuild**: Fast JavaScript bundling for production
-
-### Replit-Specific Integrations
-- **@replit/vite-plugin-runtime-error-modal**: Development error handling
-- **@replit/vite-plugin-cartographer**: Code navigation in Replit environment
-- **Replit Auth**: Built-in authentication service
+### Development Dependencies
+- **vite**: Build tool and development server
+- **tsx**: TypeScript execution for development
+- **esbuild**: Fast bundling for production builds
 
 ## Deployment Strategy
 
 ### Development Environment
-- Vite dev server for frontend with hot module replacement
-- tsx for running TypeScript server code directly
-- Automatic Replit integration for seamless development
+- Vite development server with hot module replacement
+- Express server running on Node.js with tsx
+- PostgreSQL database (Neon serverless)
+- Environment variables for database connection and session secrets
 
 ### Production Build
-- Frontend: Vite build to static assets in `dist/public`
-- Backend: ESBuild bundling of server code to `dist/index.js`
-- Single-command deployment with `npm run build && npm start`
+- Frontend: Vite builds optimized React bundle to `dist/public`
+- Backend: esbuild bundles Express server to `dist/index.js`
+- Static file serving through Express in production
+- Database migrations handled through Drizzle Kit
 
-### Database Management
-- Environment-based database URL configuration
-- Automated schema migrations with `drizzle-kit push`
-- Session storage handled automatically via connect-pg-simple
+### Environment Configuration
+- **DATABASE_URL**: PostgreSQL connection string (required)
+- **SESSION_SECRET**: Session encryption key
+- **REPL_ID**: Replit environment identifier
+- **ISSUER_URL**: OIDC provider URL (defaults to replit.com/oidc)
 
-### Architecture Decisions
-
-**Monorepo Structure**: Chosen for shared TypeScript types and schema definitions between client and server, reducing duplication and ensuring type safety across the stack.
-
-**Drizzle ORM**: Selected over alternatives like Prisma for its lightweight nature, excellent TypeScript support, and schema-first approach that works well with the shared code architecture.
-
-**TanStack Query**: Implemented for robust server state management, caching, and optimistic updates, providing a better user experience than basic fetch calls.
-
-**Replit Auth**: Leveraged for simplified authentication flow, eliminating the need for custom auth implementation while providing enterprise-grade security.
-
-**shadcn/ui + Radix**: Chosen for accessible, customizable components that maintain design consistency while being lightweight compared to full component libraries.
+The application uses a monorepo structure with shared TypeScript schemas between client and server, ensuring type safety across the full stack.
