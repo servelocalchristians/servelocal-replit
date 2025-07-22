@@ -13,57 +13,12 @@ import {
   Calendar,
   Clock,
 } from "lucide-react";
+import Navbar from "@/components/layout/navbar";
 
 export default function Landing() {
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="bg-white shadow-md sticky top-0 z-50">
-        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <span className="text-xl sm:text-2xl font-bold text-primary">
-                ServeConnect
-              </span>
-              <div className="hidden md:block ml-6 lg:ml-10">
-                <div className="flex items-baseline space-x-4">
-                  <button className="text-gray-700 hover:text-primary px-2 lg:px-3 py-2 rounded-md text-sm font-medium">
-                    Find Opportunities
-                  </button>
-                  <button className="text-gray-700 hover:text-primary px-2 lg:px-3 py-2 rounded-md text-sm font-medium">
-                    For Nonprofits
-                  </button>
-                  <a
-                    href="/about"
-                    className="text-gray-700 hover:text-primary px-2 lg:px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    About
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Mobile menu button */}
-            <div className="md:hidden">
-              <Button size="sm" asChild>
-                <a href="/auth">Start</a>
-              </Button>
-            </div>
-
-            {/* Desktop buttons */}
-            <div className="hidden md:block">
-              <div className="ml-4 flex items-center space-x-2 lg:space-x-3">
-                <Button variant="outline" size="sm" asChild>
-                  <a href="/auth?tab=login">Sign In</a>
-                </Button>
-                <Button size="sm" asChild>
-                  <a href="/auth">Get Started</a>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </nav>
-      </header>
+      <Navbar />
 
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary to-blue-800 text-white">

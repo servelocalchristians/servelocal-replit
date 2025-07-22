@@ -6,7 +6,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import {
   Form,
   FormControl,
@@ -38,11 +44,13 @@ const categories = [
   "Technology",
 ];
 
-const formSchema = insertOpportunitySchema.extend({
-  requiredSkills: z.string().optional(),
-}).omit({
-  createdById: true,
-});
+const formSchema = insertOpportunitySchema
+  .extend({
+    requiredSkills: z.string().optional(),
+  })
+  .omit({
+    createdById: true,
+  });
 
 type FormData = z.infer<typeof formSchema>;
 
@@ -88,7 +96,8 @@ export default function CreateOpportunity() {
     if (!orgsLoading && !userOrganizations?.length) {
       toast({
         title: "No Church Found",
-        description: "Please register your church first to create opportunities.",
+        description:
+          "Please register your church first to create opportunities.",
       });
       navigate("/register-church");
     }
@@ -99,7 +108,10 @@ export default function CreateOpportunity() {
       const processedData = {
         ...data,
         requiredSkills: data.requiredSkills
-          ? data.requiredSkills.split(",").map(skill => skill.trim()).filter(Boolean)
+          ? data.requiredSkills
+              .split(",")
+              .map((skill) => skill.trim())
+              .filter(Boolean)
           : [],
       };
       await apiRequest("POST", "/api/opportunities", processedData);
@@ -152,7 +164,7 @@ export default function CreateOpportunity() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
-      
+
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="text-center mb-12">
@@ -163,7 +175,7 @@ export default function CreateOpportunity() {
             Post a new opportunity to connect with volunteers in your community
           </p>
         </div>
-        
+
         <Card className="elevation-2">
           <CardHeader>
             <CardTitle className="flex items-center">
@@ -173,7 +185,10 @@ export default function CreateOpportunity() {
           </CardHeader>
           <CardContent className="p-6 lg:p-8">
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-6"
+              >
                 <div className="grid md:grid-cols-2 gap-6">
                   <FormField
                     control={form.control}
@@ -182,20 +197,26 @@ export default function CreateOpportunity() {
                       <FormItem>
                         <FormLabel>Opportunity Title *</FormLabel>
                         <FormControl>
-                          <Input placeholder="e.g., Community Food Drive" {...field} />
+                          <Input
+                            placeholder="e.g., Community Food Drive"
+                            {...field}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-                  
+
                   <FormField
                     control={form.control}
                     name="category"
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Category *</FormLabel>
-                        <Select onValueChange={field.onChange} value={field.value}>
+                        <Select
+                          onValueChange={field.onChange}
+                          value={field.value}
+                        >
                           <FormControl>
                             <SelectTrigger>
                               <SelectValue placeholder="Select a category" />
@@ -250,7 +271,7 @@ export default function CreateOpportunity() {
                       </FormItem>
                     )}
                   />
-                  
+
                   <FormField
                     control={form.control}
                     name="startTime"
@@ -267,7 +288,7 @@ export default function CreateOpportunity() {
                       </FormItem>
                     )}
                   />
-                  
+
                   <FormField
                     control={form.control}
                     name="endTime"
@@ -299,14 +320,16 @@ export default function CreateOpportunity() {
                             min="1"
                             placeholder="12"
                             {...field}
-                            onChange={(e) => field.onChange(parseInt(e.target.value) || 1)}
+                            onChange={(e) =>
+                              field.onChange(parseInt(e.target.value) || 1)
+                            }
                           />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-                  
+
                   <FormField
                     control={form.control}
                     name="requiredSkills"
@@ -371,7 +394,10 @@ export default function CreateOpportunity() {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel>Recurring Pattern</FormLabel>
-                          <Select onValueChange={field.onChange} value={field.value || ""}>
+                          <Select
+                            onValueChange={field.onChange}
+                            value={field.value || ""}
+                          >
                             <FormControl>
                               <SelectTrigger>
                                 <SelectValue placeholder="Select recurring pattern" />
@@ -379,7 +405,9 @@ export default function CreateOpportunity() {
                             </FormControl>
                             <SelectContent>
                               <SelectItem value="weekly">Weekly</SelectItem>
-                              <SelectItem value="biweekly">Bi-weekly</SelectItem>
+                              <SelectItem value="biweekly">
+                                Bi-weekly
+                              </SelectItem>
                               <SelectItem value="monthly">Monthly</SelectItem>
                             </SelectContent>
                           </Select>
@@ -398,7 +426,9 @@ export default function CreateOpportunity() {
                       <FormItem>
                         <FormLabel>Organization</FormLabel>
                         <Select
-                          onValueChange={(value) => field.onChange(parseInt(value))}
+                          onValueChange={(value) =>
+                            field.onChange(parseInt(value))
+                          }
                           value={field.value.toString()}
                         >
                           <FormControl>
@@ -429,7 +459,9 @@ export default function CreateOpportunity() {
                     disabled={createOpportunityMutation.isPending}
                     className="bg-primary hover:bg-blue-700"
                   >
-                    {createOpportunityMutation.isPending ? "Creating..." : "Post Opportunity"}
+                    {createOpportunityMutation.isPending
+                      ? "Creating..."
+                      : "Post Opportunity"}
                   </Button>
                   <Button
                     type="button"
