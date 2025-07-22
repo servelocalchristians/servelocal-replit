@@ -96,39 +96,40 @@ export default function AuthPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row">
+    <div className="min-h-screen flex flex-col">
       <Navbar />
-      {/* Left Side - Forms */}
-      <div className="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-8 bg-white">
-        <div className="w-full max-w-md">
-          <div className="text-center mb-6 lg:mb-8">
-            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
-              Welcome to ServeConnect
-            </h1>
-            <p className="text-sm sm:text-base text-gray-600">
-              Connect with volunteer opportunities in your community
-            </p>
-          </div>
+      <div className="flex-1 flex flex-col lg:flex-row">
+        {/* Left Side - Forms */}
+        <div className="flex-1 flex items-center justify-center p-6 sm:p-8 lg:p-12 bg-white">
+          <div className="w-full max-w-md space-y-6">
+            <div className="text-center space-y-2">
+              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
+                Welcome to ServeConnect
+              </h1>
+              <p className="text-sm sm:text-base text-gray-600">
+                Connect with volunteer opportunities in your community
+              </p>
+            </div>
 
-          <Tabs
-            value={activeTab}
-            onValueChange={setActiveTab}
-            className="w-full"
-          >
-            <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="login">Login</TabsTrigger>
-              <TabsTrigger value="register">Register</TabsTrigger>
-            </TabsList>
+            <Tabs
+              value={activeTab}
+              onValueChange={setActiveTab}
+              className="w-full space-y-4"
+            >
+              <TabsList className="grid w-full grid-cols-2">
+                <TabsTrigger value="login">Login</TabsTrigger>
+                <TabsTrigger value="register">Register</TabsTrigger>
+              </TabsList>
 
             <TabsContent value="login">
               <Card>
-                <CardHeader>
+                <CardHeader className="space-y-1 pb-4">
                   <CardTitle>Sign In</CardTitle>
                   <CardDescription>
                     Enter your credentials to access your account
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="space-y-4">
                   <Form {...loginForm}>
                     <form
                       onSubmit={loginForm.handleSubmit(onLogin)}
@@ -182,19 +183,19 @@ export default function AuthPage() {
 
             <TabsContent value="register">
               <Card>
-                <CardHeader>
+                <CardHeader className="space-y-1 pb-4">
                   <CardTitle>Create Account</CardTitle>
                   <CardDescription>
                     Join ServeConnect to start volunteering
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="space-y-4">
                   <Form {...registerForm}>
                     <form
                       onSubmit={registerForm.handleSubmit(onRegister)}
                       className="space-y-4"
                     >
-                      <div className="grid grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <FormField
                           control={registerForm.control}
                           name="firstName"
@@ -300,64 +301,67 @@ export default function AuthPage() {
                 </CardContent>
               </Card>
             </TabsContent>
-          </Tabs>
+            </Tabs>
+          </div>
         </div>
-      </div>
 
-      {/* Right Side - Hero */}
-      <div className="hidden lg:flex flex-1 bg-gradient-to-br from-primary to-blue-800 p-6 lg:p-8 text-white items-center justify-center">
-        <div className="max-w-lg text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4 lg:mb-6">
-            Strengthen Communities Together
-          </h2>
-          <p className="text-lg lg:text-xl mb-6 lg:mb-8 text-blue-100">
-            Connect churches and nonprofits with volunteers to create lasting
-            positive change in your community.
-          </p>
-
-          <div className="grid gap-6 text-left">
-            <div className="flex items-start space-x-4">
-              <div className="bg-white/20 p-3 rounded-full">
-                <Heart className="h-6 w-6" />
-              </div>
-              <div>
-                <h3 className="font-semibold mb-2">
-                  Find Meaningful Opportunities
-                </h3>
-                <p className="text-blue-100 text-sm">
-                  Discover volunteer opportunities that match your skills and
-                  passion for serving others.
-                </p>
-              </div>
+        {/* Right Side - Hero */}
+        <div className="hidden lg:flex flex-1 bg-gradient-to-br from-primary to-blue-800 p-8 lg:p-12 text-white items-center justify-center">
+          <div className="max-w-lg text-center space-y-6">
+            <div className="space-y-4">
+              <h2 className="text-3xl lg:text-4xl font-bold">
+                Strengthen Communities Together
+              </h2>
+              <p className="text-lg lg:text-xl text-blue-100">
+                Connect churches and nonprofits with volunteers to create lasting
+                positive change in your community.
+              </p>
             </div>
 
-            <div className="flex items-start space-x-4">
-              <div className="bg-white/20 p-3 rounded-full">
-                <Users className="h-6 w-6" />
+            <div className="grid gap-6 text-left">
+              <div className="flex items-start space-x-4">
+                <div className="bg-white/20 p-3 rounded-full flex-shrink-0">
+                  <Heart className="h-6 w-6" />
+                </div>
+                <div className="space-y-1">
+                  <h3 className="font-semibold">
+                    Find Meaningful Opportunities
+                  </h3>
+                  <p className="text-blue-100 text-sm">
+                    Discover volunteer opportunities that match your skills and
+                    passion for serving others.
+                  </p>
+                </div>
               </div>
-              <div>
-                <h3 className="font-semibold mb-2">
-                  Connect Across Organizations
-                </h3>
-                <p className="text-blue-100 text-sm">
-                  Build relationships with volunteers and organizations beyond
-                  your home church.
-                </p>
-              </div>
-            </div>
 
-            <div className="flex items-start space-x-4">
-              <div className="bg-white/20 p-3 rounded-full">
-                <Building className="h-6 w-6" />
+              <div className="flex items-start space-x-4">
+                <div className="bg-white/20 p-3 rounded-full flex-shrink-0">
+                  <Users className="h-6 w-6" />
+                </div>
+                <div className="space-y-1">
+                  <h3 className="font-semibold">
+                    Connect Across Organizations
+                  </h3>
+                  <p className="text-blue-100 text-sm">
+                    Build relationships with volunteers and organizations beyond
+                    your home church.
+                  </p>
+                </div>
               </div>
-              <div>
-                <h3 className="font-semibold mb-2">
-                  Strengthen Your Community
-                </h3>
-                <p className="text-blue-100 text-sm">
-                  Work together like Nehemiah's tribes to rebuild and strengthen
-                  your local community.
-                </p>
+
+              <div className="flex items-start space-x-4">
+                <div className="bg-white/20 p-3 rounded-full flex-shrink-0">
+                  <Building className="h-6 w-6" />
+                </div>
+                <div className="space-y-1">
+                  <h3 className="font-semibold">
+                    Strengthen Your Community
+                  </h3>
+                  <p className="text-blue-100 text-sm">
+                    Work together like Nehemiah's tribes to rebuild and strengthen
+                    your local community.
+                  </p>
+                </div>
               </div>
             </div>
           </div>

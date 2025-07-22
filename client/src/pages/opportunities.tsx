@@ -196,31 +196,33 @@ export default function Opportunities() {
           </>
         ) : (
           <Card>
-            <CardContent className="p-12 text-center">
-              <div className="mb-4">
-                <Search className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  No opportunities found
-                </h3>
-                <p className="text-gray-600 mb-6">
-                  {searchTerm || selectedCategory !== "All Categories"
-                    ? "Try adjusting your search or filters."
-                    : "Be the first to create an opportunity for your church!"}
-                </p>
-              </div>
-              <div className="space-y-2">
-                {(searchTerm || selectedCategory !== "All Categories") && (
-                  <Button
-                    variant="outline"
-                    onClick={() => {
-                      setSearchTerm("");
-                      setSelectedCategory("All Categories");
-                    }}
-                  >
-                    Clear Filters
-                  </Button>
-                )}
-                <Button>Register Your Church</Button>
+            <CardContent className="p-8 sm:p-12 text-center">
+              <div className="space-y-4">
+                <Search className="h-12 w-12 text-gray-400 mx-auto" />
+                <div className="space-y-2">
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    No opportunities found
+                  </h3>
+                  <p className="text-gray-600">
+                    {searchTerm || selectedCategory !== "All Categories"
+                      ? "Try adjusting your search or filters."
+                      : "Be the first to create an opportunity for your church!"}
+                  </p>
+                </div>
+                <div className="space-y-2 pt-4">
+                  {(searchTerm || selectedCategory !== "All Categories") && (
+                    <Button
+                      variant="outline"
+                      onClick={() => {
+                        setSearchTerm("");
+                        setSelectedCategory("All Categories");
+                      }}
+                    >
+                      Clear Filters
+                    </Button>
+                  )}
+                  <Button>Register Your Church</Button>
+                </div>
               </div>
             </CardContent>
           </Card>
