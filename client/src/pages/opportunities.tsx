@@ -188,7 +188,7 @@ export default function Opportunities() {
             {/* Load More Button */}
             {opportunities && opportunities.length >= limit && (
               <div className="text-center">
-                <Button onClick={handleLoadMore} variant="outline">
+                <Button onClick={handleLoadMore} className="bg-primary hover:bg-accent hover:text-accent-foreground">
                   Load More Opportunities
                 </Button>
               </div>
@@ -212,16 +212,16 @@ export default function Opportunities() {
                 <div className="space-y-2 pt-4">
                   {(searchTerm || selectedCategory !== "All Categories") && (
                     <Button
-                      variant="outline"
                       onClick={() => {
                         setSearchTerm("");
                         setSelectedCategory("All Categories");
                       }}
+                      className="bg-primary hover:bg-accent hover:text-accent-foreground"
                     >
                       Clear Filters
                     </Button>
                   )}
-                  <Button>Register Your Nonprofit</Button>
+                  <Button className="bg-primary hover:bg-accent hover:text-accent-foreground">Register Your Nonprofit</Button>
                 </div>
               </div>
             </CardContent>
