@@ -116,7 +116,7 @@ export default function Landing() {
                 Role-Based Management
               </h3>
               <p className="text-sm sm:text-base text-gray-600">
-                Church leaders can assign roles and permissions to team members
+                Nonprofit leaders can assign roles and permissions to team members
                 for efficient opportunity management.
               </p>
             </div>
@@ -247,10 +247,10 @@ export default function Landing() {
                 <CheckCircle className="h-8 w-8 text-secondary" />
               </div>
               <h3 className="text-lg font-semibold mb-2">
-                Church Verification
+                Nonprofit Verification
               </h3>
               <p className="text-gray-600 text-sm">
-                All churches undergo verification to ensure legitimacy
+                All nonprofits undergo verification to ensure legitimacy
               </p>
             </div>
 

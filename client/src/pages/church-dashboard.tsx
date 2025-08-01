@@ -66,9 +66,9 @@ export default function ChurchDashboard() {
   useEffect(() => {
     if (!orgsLoading && !userOrganizations?.length) {
       toast({
-        title: "No Church Found",
+        title: "No Nonprofit Found",
         description:
-          "Please register your church first to access the dashboard.",
+          "Please register your nonprofit first to access the dashboard.",
       });
       navigate("/register-church");
     }
