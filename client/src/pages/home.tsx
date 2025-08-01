@@ -87,7 +87,7 @@ export default function Home() {
                   <Button variant="outline" asChild className="w-full">
                     <Link href="/register-church">
                       <Calendar className="mr-2 h-4 w-4" />
-                      Register Your Church
+                      Register Your Nonprofit
                     </Link>
                   </Button>
                 </div>

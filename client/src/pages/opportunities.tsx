@@ -206,7 +206,7 @@ export default function Opportunities() {
                   <p className="text-gray-600">
                     {searchTerm || selectedCategory !== "All Categories"
                       ? "Try adjusting your search or filters."
-                      : "Be the first to create an opportunity for your church!"}
+                      : "Be the first to create an opportunity for your nonprofit!"}
                   </p>
                 </div>
                 <div className="space-y-2 pt-4">
@@ -221,7 +221,7 @@ export default function Opportunities() {
                       Clear Filters
                     </Button>
                   )}
-                  <Button>Register Your Church</Button>
+                  <Button>Register Your Nonprofit</Button>
                 </div>
               </div>
             </CardContent>

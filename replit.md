@@ -2,7 +2,7 @@
 
 ## Overview
 
-ServeConnect is a full-stack web application that connects volunteers with churches and organizations to find and manage volunteer opportunities. The platform enables churches to post volunteer opportunities and volunteers to discover and sign up for service opportunities in their community.
+ServeConnect is a full-stack web application that connects volunteers with nonprofits and organizations to find and manage volunteer opportunities. The platform enables nonprofits to post volunteer opportunities and volunteers to discover and sign up for service opportunities in their community.
 
 ## User Preferences
 
@@ -47,7 +47,7 @@ Preferred communication style: Simple, everyday language.
 - Volunteer history and statistics tracking
 
 ### Organization Management
-- Church/organization registration and verification
+- Nonprofit/organization registration and verification
 - Organization ownership and member management
 - Role-based permissions within organizations
 
@@ -60,7 +60,7 @@ Preferred communication style: Simple, everyday language.
 ### Data Models
 Key entities include:
 - **Users**: Authentication, profiles, and volunteer history
-- **Organizations**: Churches and nonprofits posting opportunities
+- **Organizations**: Nonprofits and organizations posting opportunities
 - **Opportunities**: Volunteer positions with details and requirements
 - **Volunteer Signups**: User registrations for specific opportunities
 - **Organization Members**: Relationship between users and organizations
@@ -124,3 +124,4 @@ The application uses a monorepo structure with shared TypeScript schemas between
 - **Navigation Security**: Updated navbar to only show "Find Opportunities" and "For Nonprofits" links to authenticated users
 - **Sign-in Flow**: Fixed Sign In button to properly focus on Login tab instead of Register tab
 - **Responsive Design**: Improved spacing and mobile layouts across auth, opportunities, church-dashboard, and create-opportunity pages
+- **Terminology Update (January 2025)**: Updated all references from "Church/Churches" to "Nonprofit/Nonprofits" throughout the application
