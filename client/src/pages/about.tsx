@@ -66,8 +66,8 @@ export default function About() {
             <p className="text-lg leading-relaxed mb-6">
               This ancient model of organized, collaborative service inspires
               ServeConnect today. Just as Nehemiah coordinated diverse groups to
-              rebuild Jerusalem's infrastructure, we help coordinate churches
-              and nonprofit organizations to rebuild and strengthen our modern
+              rebuild Jerusalem's infrastructure, we help coordinate nonprofits
+              and organizations to rebuild and strengthen our modern
               communities.
             </p>
           </div>
@@ -111,7 +111,7 @@ export default function About() {
               </h3>
               <p className="text-gray-600 text-center">
                 Different tribes worked together in Jerusalem. Today, various
-                churches and nonprofits unite through our platform to serve the
+                nonprofits unite through our platform to serve the
                 broader community.
               </p>
             </div>
@@ -139,7 +139,7 @@ export default function About() {
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Mission</h2>
           <p className="text-xl text-gray-600 leading-relaxed mb-8">
             ServeConnect exists to strengthen communities by connecting
-            volunteers with meaningful service opportunities across churches and
+            volunteers with meaningful service opportunities across
             nonprofit organizations. We believe that when diverse groups work
             together—like the tribes rebuilding Jerusalem—we can accomplish far
             more than any single organization working alone.
@@ -148,7 +148,7 @@ export default function About() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               size="lg"
-              className="bg-primary hover:bg-primary/90"
+              className="bg-primary hover:bg-accent hover:text-accent-foreground"
               asChild
             >
               <a href="/auth">
@@ -156,7 +156,7 @@ export default function About() {
                 Start Volunteering
               </a>
             </Button>
-            <Button size="lg" variant="outline" asChild>
+            <Button size="lg" className="bg-primary hover:bg-accent hover:text-accent-foreground" asChild>
               <a href="/auth">
                 <Building className="mr-2 h-5 w-5" />
                 Register Organization
