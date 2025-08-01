@@ -58,7 +58,7 @@ export default function ChurchRegistration() {
     if (!authLoading && !isAuthenticated) {
       toast({
         title: "Authentication Required",
-        description: "Please sign in to register your church.",
+        description: "Please sign in to register your nonprofit.",
       });
       window.location.href = "/auth";
     }
@@ -72,7 +72,7 @@ export default function ChurchRegistration() {
       toast({
         title: "Success!",
         description:
-          "Your church has been registered successfully. Welcome to ServeConnect!",
+          "Your nonprofit has been registered successfully. Welcome to ServeConnect!",
       });
       queryClient.invalidateQueries({ queryKey: ["/api/organizations/my"] });
       navigate("/church-dashboard");
@@ -91,7 +91,7 @@ export default function ChurchRegistration() {
       }
       toast({
         title: "Error",
-        description: "Failed to register church. Please try again.",
+        description: "Failed to register nonprofit. Please try again.",
         variant: "destructive",
       });
     },
@@ -122,7 +122,7 @@ export default function ChurchRegistration() {
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-            Register Your Church
+            Register Your Nonprofit
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Join our platform to connect with volunteers and strengthen your
