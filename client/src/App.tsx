@@ -42,6 +42,7 @@ function Router() {
           <Route path="/create-opportunity" component={CreateOpportunity} />
           <Route path="/register-church" component={ChurchRegistration} />
           <Route path="/about" component={About} />
+          <Route path="/auth" component={AuthPage} />
         </>
       )}
       <Route component={NotFound} />

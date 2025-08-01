@@ -116,3 +116,11 @@ Key entities include:
 - **ISSUER_URL**: OIDC provider URL (defaults to replit.com/oidc)
 
 The application uses a monorepo structure with shared TypeScript schemas between client and server, ensuring type safety across the full stack.
+
+## Recent Changes
+
+### Bug Fixes
+- **Authentication Flow (January 2025)**: Fixed 404 error after user registration by ensuring `/auth` route is available for both authenticated and non-authenticated users
+- **Navigation Security**: Updated navbar to only show "Find Opportunities" and "For Nonprofits" links to authenticated users
+- **Sign-in Flow**: Fixed Sign In button to properly focus on Login tab instead of Register tab
+- **Responsive Design**: Improved spacing and mobile layouts across auth, opportunities, church-dashboard, and create-opportunity pages
