@@ -379,16 +379,16 @@ export default function ChurchRegistration() {
                   <Button
                     type="submit"
                     disabled={createOrganizationMutation.isPending}
-                    className="bg-primary hover:bg-blue-700"
+                    className="bg-primary hover:bg-accent hover:text-accent-foreground"
                   >
                     {createOrganizationMutation.isPending
                       ? "Registering..."
-                      : "Register Church"}
+                      : "Register Nonprofit"}
                   </Button>
                   <Button
                     type="button"
-                    variant="outline"
                     onClick={() => navigate("/")}
+                    className="bg-primary hover:bg-accent hover:text-accent-foreground"
                   >
                     Cancel
                   </Button>

@@ -78,13 +78,13 @@ export default function Home() {
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                  <Button asChild className="w-full">
+                  <Button asChild className="w-full bg-primary hover:bg-accent hover:text-accent-foreground">
                     <Link href="/opportunities">
                       <Users className="mr-2 h-4 w-4" />
                       Find Opportunities
                     </Link>
                   </Button>
-                  <Button variant="outline" asChild className="w-full">
+                  <Button asChild className="w-full bg-primary hover:bg-accent hover:text-accent-foreground">
                     <Link href="/register-church">
                       <Calendar className="mr-2 h-4 w-4" />
                       Register Your Nonprofit
@@ -101,10 +101,9 @@ export default function Home() {
                   Opportunities Near You
                 </h2>
                 <Button
-                  variant="outline"
                   size="sm"
                   asChild
-                  className="w-full sm:w-auto"
+                  className="w-full sm:w-auto bg-primary hover:bg-accent hover:text-accent-foreground"
                 >
                   <Link href="/opportunities">View All</Link>
                 </Button>

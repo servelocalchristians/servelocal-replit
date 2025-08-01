@@ -457,7 +457,7 @@ export default function CreateOpportunity() {
                   <Button
                     type="submit"
                     disabled={createOpportunityMutation.isPending}
-                    className="bg-primary hover:bg-blue-700 w-full sm:w-auto flex-1 sm:flex-none"
+                    className="bg-primary hover:bg-accent hover:text-accent-foreground w-full sm:w-auto flex-1 sm:flex-none"
                   >
                     {createOpportunityMutation.isPending
                       ? "Creating..."
@@ -465,9 +465,8 @@ export default function CreateOpportunity() {
                   </Button>
                   <Button
                     type="button"
-                    variant="outline"
                     onClick={() => navigate("/church-dashboard")}
-                    className="w-full sm:w-auto"
+                    className="w-full sm:w-auto bg-primary hover:bg-accent hover:text-accent-foreground"
                   >
                     Cancel
                   </Button>

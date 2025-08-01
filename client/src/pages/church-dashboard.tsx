@@ -178,7 +178,7 @@ export default function ChurchDashboard() {
               <CardHeader>
                 <div className="flex justify-between items-center">
                   <CardTitle>Your Opportunities</CardTitle>
-                  <Button size="sm" asChild>
+                  <Button size="sm" asChild className="bg-primary hover:bg-accent hover:text-accent-foreground">
                     <Link href="/create-opportunity">
                       <Plus className="mr-2 h-4 w-4" />
                       Create New
@@ -240,10 +240,10 @@ export default function ChurchDashboard() {
                             </div>
                           </div>
                           <div className="flex gap-2 w-full sm:w-auto">
-                            <Button size="sm" variant="outline" className="flex-1 sm:flex-none">
+                            <Button size="sm" className="flex-1 sm:flex-none bg-primary hover:bg-accent hover:text-accent-foreground">
                               <Edit className="h-4 w-4" />
                             </Button>
-                            <Button size="sm" variant="outline" className="flex-1 sm:flex-none">
+                            <Button size="sm" className="flex-1 sm:flex-none bg-primary hover:bg-accent hover:text-accent-foreground">
                               <Eye className="h-4 w-4" />
                             </Button>
                           </div>
@@ -268,7 +268,7 @@ export default function ChurchDashboard() {
                     <p className="text-gray-600 mb-4">
                       Create your first volunteer opportunity to get started.
                     </p>
-                    <Button asChild>
+                    <Button asChild className="bg-primary hover:bg-accent hover:text-accent-foreground">
                       <Link href="/create-opportunity">
                         <Plus className="mr-2 h-4 w-4" />
                         Create Opportunity
