@@ -21,26 +21,30 @@ export default function Navbar() {
 
   const NavLinks = ({ mobile = false }: { mobile?: boolean }) => (
     <div className={mobile ? "flex flex-col space-y-4" : "flex items-baseline space-x-2 sm:space-x-4 lg:space-x-6"}>
-      <Link href="/opportunities">
-        <button
-          className={`${
-            isActive("/opportunities") ? "text-primary" : "text-gray-700"
-          } hover:text-primary px-2 sm:px-3 py-2 rounded-md text-xs sm:text-sm font-medium transition-colors whitespace-nowrap`}
-          onClick={() => mobile && setMobileMenuOpen(false)}
-        >
-          Find Opportunities
-        </button>
-      </Link>
-      <Link href="/church-dashboard">
-        <button
-          className={`${
-            isActive("/church-dashboard") ? "text-primary" : "text-gray-700"
-          } hover:text-primary px-2 sm:px-3 py-2 rounded-md text-xs sm:text-sm font-medium transition-colors whitespace-nowrap`}
-          onClick={() => mobile && setMobileMenuOpen(false)}
-        >
-          For Nonprofits
-        </button>
-      </Link>
+      {isAuthenticated && (
+        <Link href="/opportunities">
+          <button
+            className={`${
+              isActive("/opportunities") ? "text-primary" : "text-gray-700"
+            } hover:text-primary px-2 sm:px-3 py-2 rounded-md text-xs sm:text-sm font-medium transition-colors whitespace-nowrap`}
+            onClick={() => mobile && setMobileMenuOpen(false)}
+          >
+            Find Opportunities
+          </button>
+        </Link>
+      )}
+      {isAuthenticated && (
+        <Link href="/church-dashboard">
+          <button
+            className={`${
+              isActive("/church-dashboard") ? "text-primary" : "text-gray-700"
+            } hover:text-primary px-2 sm:px-3 py-2 rounded-md text-xs sm:text-sm font-medium transition-colors whitespace-nowrap`}
+            onClick={() => mobile && setMobileMenuOpen(false)}
+          >
+            For Nonprofits
+          </button>
+        </Link>
+      )}
       <Link href="/about">
         <button
           className={`${
