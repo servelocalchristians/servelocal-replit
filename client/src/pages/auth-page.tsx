@@ -30,11 +30,12 @@ import Navbar from "@/components/layout/navbar";
 
 const loginSchema = z.object({
   username: z.string().min(3, "Username must be at least 3 characters"),
-  password: z.string().min(6, "Password must be at least 6 characters"),
+  password: z.string().min(3, "Password must be at least 3 characters"),
 });
 
 const registerSchema = insertUserSchema
   .extend({
+    password: z.string().min(3, "Password must be at least 3 characters"),
     confirmPassword: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {

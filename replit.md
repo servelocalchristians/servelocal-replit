@@ -125,3 +125,4 @@ The application uses a monorepo structure with shared TypeScript schemas between
 - **Sign-in Flow**: Fixed Sign In button to properly focus on Login tab instead of Register tab
 - **Responsive Design**: Improved spacing and mobile layouts across auth, opportunities, church-dashboard, and create-opportunity pages
 - **Terminology Update (January 2025)**: Updated all references from "Church/Churches" to "Nonprofit/Nonprofits" throughout the application
+- **Password Validation Fix (January 2025)**: Fixed inconsistent password validation between registration (no minimum) and login (6 char minimum) by standardizing both to 3 character minimum
