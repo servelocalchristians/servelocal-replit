@@ -51,22 +51,6 @@ export default function AuthPage() {
   const [location] = useLocation();
   const [activeTab, setActiveTab] = useState("register");
 
-  // Check URL parameters for login tab
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const tab = urlParams.get("tab");
-    if (tab === "login") {
-      setActiveTab("login");
-    } else {
-      setActiveTab("register");
-    }
-  }, [location]);
-
-  // Redirect to home if already authenticated
-  if (user) {
-    return <Redirect to="/" />;
-  }
-
   const loginForm = useForm<LoginForm>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -86,6 +70,22 @@ export default function AuthPage() {
       lastName: "",
     },
   });
+
+  // Check URL parameters for login tab
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const tab = urlParams.get("tab");
+    if (tab === "login") {
+      setActiveTab("login");
+    } else {
+      setActiveTab("register");
+    }
+  }, [location]);
+
+  // Redirect to home if already authenticated
+  if (user) {
+    return <Redirect to="/" />;
+  }
 
   const onLogin = (data: LoginForm) => {
     loginMutation.mutate(data);
